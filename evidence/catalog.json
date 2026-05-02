@@ -1,0 +1,77 @@
+{
+  "evidence": [
+    {
+      "id": "okta-system-log-explorer",
+      "platform": "okta",
+      "status": "captured",
+      "file": "evidence/okta-system-log-explorer-sanitized.png",
+      "captured_at": "2026-05-02",
+      "public_safe_note": "Show event types and field structure with tenant and identities redacted."
+    },
+    {
+      "id": "okta-policy-surfaces",
+      "platform": "okta",
+      "status": "captured",
+      "file": "evidence/okta-policy-surfaces-sanitized.png",
+      "captured_at": "2026-05-02",
+      "public_safe_note": "Show policy configuration surfaces without real names."
+    },
+    {
+      "id": "okta-app-oauth-surface",
+      "platform": "okta",
+      "status": "captured",
+      "file": "evidence/okta-app-oauth-surface-sanitized.png",
+      "captured_at": "2026-05-02",
+      "public_safe_note": "Show app or OAuth management surface with sensitive values hidden."
+    },
+    {
+      "id": "workspace-audit-log",
+      "platform": "google_workspace",
+      "status": "blocked_by_privilege",
+      "file": "evidence/workspace-audit-log-sanitized.png",
+      "captured_at": "2026-05-02",
+      "public_safe_note": "Show that the audit report was attempted and blocked by admin role privilege, without identity or domain details.",
+      "blocker_note": "The lab account could reach Google Admin but did not have the reporting privilege required to view the Admin audit report."
+    },
+    {
+      "id": "workspace-oauth-app-access",
+      "platform": "google_workspace",
+      "status": "captured",
+      "file": "evidence/workspace-oauth-app-access-sanitized.png",
+      "captured_at": "2026-05-02",
+      "public_safe_note": "Show app access or OAuth controls without real app ownership data."
+    },
+    {
+      "id": "workspace-drive-sharing-controls",
+      "platform": "google_workspace",
+      "status": "captured",
+      "file": "evidence/workspace-drive-sharing-controls-sanitized.png",
+      "captured_at": "2026-05-02",
+      "public_safe_note": "Show sharing controls without document names or user data."
+    },
+    {
+      "id": "atlas-activity-feed",
+      "platform": "mongodb_atlas",
+      "status": "captured",
+      "file": "evidence/atlas-activity-feed-sanitized.png",
+      "captured_at": "2026-05-02",
+      "public_safe_note": "Show activity-feed surface with org and project identifiers redacted."
+    },
+    {
+      "id": "atlas-network-access",
+      "platform": "mongodb_atlas",
+      "status": "captured",
+      "file": "evidence/atlas-network-access-sanitized.png",
+      "captured_at": "2026-05-02",
+      "public_safe_note": "Show network access controls without real source ranges."
+    },
+    {
+      "id": "atlas-database-users",
+      "platform": "mongodb_atlas",
+      "status": "captured",
+      "file": "evidence/atlas-database-users-sanitized.png",
+      "captured_at": "2026-05-02",
+      "public_safe_note": "Show database access controls without real usernames."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+title: MongoDB Atlas Database User Privilege Change
+id: atlas_database_user_privilege_change
+status: test
+description: Atlas database user granted broad database role.
+logsource:
+  product: mongodb_atlas
+  service: activity_feed
+detection:
+  selection:
+    eventTypeName: DATABASE_USER_ROLES_CHANGED
+    roles.roleName|contains: readWriteAnyDatabase
+  condition: selection
+falsepositives:
+  - Approved break-glass access or migration access.
+level: high
+

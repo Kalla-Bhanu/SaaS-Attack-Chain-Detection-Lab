@@ -1,0 +1,16 @@
+title: Okta MFA Fatigue Pressure
+id: okta_mfa_fatigue_pressure
+status: test
+description: Repeated MFA challenge activity that may indicate push fatigue pressure.
+logsource:
+  product: okta
+  service: system
+detection:
+  selection:
+    eventType: user.authentication.auth_via_mfa
+    outcome.result: CHALLENGE
+  condition: selection
+falsepositives:
+  - Mobile notification retries, network instability, or user confusion.
+level: high
+

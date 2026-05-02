@@ -1,0 +1,506 @@
+{
+  "generated_at": "2026-05-02T00:00:00.000Z",
+  "project": "SaaS Attack Chain Detection Lab",
+  "summary": {
+    "chains": 8,
+    "rules": 16,
+    "cases": 24,
+    "passed_cases": 24,
+    "failed_cases": 0,
+    "self_tests": 5,
+    "passed_self_tests": 5,
+    "failed_self_tests": 0
+  },
+  "cases": [
+    {
+      "case_id": "credential_stuffing_to_oauth_abuse_positive",
+      "chain_id": "credential_stuffing_to_oauth_abuse",
+      "expected": "fire",
+      "actual": "fire",
+      "passed": true,
+      "fired_rules": [
+        "okta_credential_failure_pressure",
+        "okta_suspicious_oauth_grant",
+        "workspace_oauth_scope_broad"
+      ],
+      "chain_result": {
+        "chain_id": "credential_stuffing_to_oauth_abuse",
+        "fired": true,
+        "fired_required_rules": [
+          "okta_credential_failure_pressure",
+          "okta_suspicious_oauth_grant",
+          "workspace_oauth_scope_broad"
+        ],
+        "layer_count": 2,
+        "window_minutes_observed": 18
+      }
+    },
+    {
+      "case_id": "credential_stuffing_to_oauth_abuse_negative",
+      "chain_id": "credential_stuffing_to_oauth_abuse",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [],
+      "chain_result": {
+        "chain_id": "credential_stuffing_to_oauth_abuse",
+        "fired": false,
+        "fired_required_rules": [],
+        "layer_count": 0,
+        "window_minutes_observed": 6
+      }
+    },
+    {
+      "case_id": "credential_stuffing_to_oauth_abuse_edge",
+      "chain_id": "credential_stuffing_to_oauth_abuse",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [
+        "okta_suspicious_oauth_grant"
+      ],
+      "chain_result": {
+        "chain_id": "credential_stuffing_to_oauth_abuse",
+        "fired": false,
+        "fired_required_rules": [
+          "okta_suspicious_oauth_grant"
+        ],
+        "layer_count": 1,
+        "window_minutes_observed": 0
+      }
+    },
+    {
+      "case_id": "mfa_fatigue_to_admin_action_positive",
+      "chain_id": "mfa_fatigue_to_admin_action",
+      "expected": "fire",
+      "actual": "fire",
+      "passed": true,
+      "fired_rules": [
+        "okta_mfa_fatigue_pressure",
+        "okta_admin_role_grant",
+        "workspace_admin_security_change"
+      ],
+      "chain_result": {
+        "chain_id": "mfa_fatigue_to_admin_action",
+        "fired": true,
+        "fired_required_rules": [
+          "okta_mfa_fatigue_pressure",
+          "okta_admin_role_grant",
+          "workspace_admin_security_change"
+        ],
+        "layer_count": 2,
+        "window_minutes_observed": 12
+      }
+    },
+    {
+      "case_id": "mfa_fatigue_to_admin_action_negative",
+      "chain_id": "mfa_fatigue_to_admin_action",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [],
+      "chain_result": {
+        "chain_id": "mfa_fatigue_to_admin_action",
+        "fired": false,
+        "fired_required_rules": [],
+        "layer_count": 0,
+        "window_minutes_observed": 8
+      }
+    },
+    {
+      "case_id": "mfa_fatigue_to_admin_action_edge",
+      "chain_id": "mfa_fatigue_to_admin_action",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [
+        "workspace_admin_security_change"
+      ],
+      "chain_result": {
+        "chain_id": "mfa_fatigue_to_admin_action",
+        "fired": false,
+        "fired_required_rules": [
+          "workspace_admin_security_change"
+        ],
+        "layer_count": 1,
+        "window_minutes_observed": 10
+      }
+    },
+    {
+      "case_id": "suspicious_session_to_data_access_positive",
+      "chain_id": "suspicious_session_to_data_access",
+      "expected": "fire",
+      "actual": "fire",
+      "passed": true,
+      "fired_rules": [
+        "okta_suspicious_session_start",
+        "workspace_drive_download_spike",
+        "atlas_query_export_anomaly"
+      ],
+      "chain_result": {
+        "chain_id": "suspicious_session_to_data_access",
+        "fired": true,
+        "fired_required_rules": [
+          "okta_suspicious_session_start",
+          "workspace_drive_download_spike",
+          "atlas_query_export_anomaly"
+        ],
+        "layer_count": 3,
+        "window_minutes_observed": 25
+      }
+    },
+    {
+      "case_id": "suspicious_session_to_data_access_negative",
+      "chain_id": "suspicious_session_to_data_access",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [],
+      "chain_result": {
+        "chain_id": "suspicious_session_to_data_access",
+        "fired": false,
+        "fired_required_rules": [],
+        "layer_count": 0,
+        "window_minutes_observed": 0
+      }
+    },
+    {
+      "case_id": "suspicious_session_to_data_access_edge",
+      "chain_id": "suspicious_session_to_data_access",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [
+        "okta_suspicious_session_start",
+        "atlas_query_export_anomaly"
+      ],
+      "chain_result": {
+        "chain_id": "suspicious_session_to_data_access",
+        "fired": false,
+        "fired_required_rules": [
+          "okta_suspicious_session_start",
+          "atlas_query_export_anomaly"
+        ],
+        "layer_count": 2,
+        "window_minutes_observed": 40
+      }
+    },
+    {
+      "case_id": "oauth_app_abuse_to_workspace_exfil_positive",
+      "chain_id": "oauth_app_abuse_to_workspace_exfil",
+      "expected": "fire",
+      "actual": "fire",
+      "passed": true,
+      "fired_rules": [
+        "okta_suspicious_oauth_grant",
+        "workspace_oauth_scope_broad",
+        "workspace_external_drive_share"
+      ],
+      "chain_result": {
+        "chain_id": "oauth_app_abuse_to_workspace_exfil",
+        "fired": true,
+        "fired_required_rules": [
+          "okta_suspicious_oauth_grant",
+          "workspace_oauth_scope_broad",
+          "workspace_external_drive_share"
+        ],
+        "layer_count": 2,
+        "window_minutes_observed": 18
+      }
+    },
+    {
+      "case_id": "oauth_app_abuse_to_workspace_exfil_negative",
+      "chain_id": "oauth_app_abuse_to_workspace_exfil",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [],
+      "chain_result": {
+        "chain_id": "oauth_app_abuse_to_workspace_exfil",
+        "fired": false,
+        "fired_required_rules": [],
+        "layer_count": 0,
+        "window_minutes_observed": 0
+      }
+    },
+    {
+      "case_id": "oauth_app_abuse_to_workspace_exfil_edge",
+      "chain_id": "oauth_app_abuse_to_workspace_exfil",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [
+        "okta_suspicious_oauth_grant",
+        "workspace_oauth_scope_broad"
+      ],
+      "chain_result": {
+        "chain_id": "oauth_app_abuse_to_workspace_exfil",
+        "fired": false,
+        "fired_required_rules": [
+          "okta_suspicious_oauth_grant",
+          "workspace_oauth_scope_broad"
+        ],
+        "layer_count": 2,
+        "window_minutes_observed": 6
+      }
+    },
+    {
+      "case_id": "admin_account_takeover_positive",
+      "chain_id": "admin_account_takeover",
+      "expected": "fire",
+      "actual": "fire",
+      "passed": true,
+      "fired_rules": [
+        "okta_admin_role_grant",
+        "workspace_admin_security_change",
+        "atlas_database_user_privilege_change"
+      ],
+      "chain_result": {
+        "chain_id": "admin_account_takeover",
+        "fired": true,
+        "fired_required_rules": [
+          "okta_admin_role_grant",
+          "workspace_admin_security_change",
+          "atlas_database_user_privilege_change"
+        ],
+        "layer_count": 3,
+        "window_minutes_observed": 18
+      }
+    },
+    {
+      "case_id": "admin_account_takeover_negative",
+      "chain_id": "admin_account_takeover",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [],
+      "chain_result": {
+        "chain_id": "admin_account_takeover",
+        "fired": false,
+        "fired_required_rules": [],
+        "layer_count": 0,
+        "window_minutes_observed": 0
+      }
+    },
+    {
+      "case_id": "admin_account_takeover_edge",
+      "chain_id": "admin_account_takeover",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [
+        "workspace_admin_security_change",
+        "atlas_database_user_privilege_change"
+      ],
+      "chain_result": {
+        "chain_id": "admin_account_takeover",
+        "fired": false,
+        "fired_required_rules": [
+          "workspace_admin_security_change",
+          "atlas_database_user_privilege_change"
+        ],
+        "layer_count": 2,
+        "window_minutes_observed": 20
+      }
+    },
+    {
+      "case_id": "service_account_misuse_positive",
+      "chain_id": "service_account_misuse",
+      "expected": "fire",
+      "actual": "fire",
+      "passed": true,
+      "fired_rules": [
+        "okta_service_account_token_use",
+        "workspace_oauth_scope_broad",
+        "atlas_query_export_anomaly"
+      ],
+      "chain_result": {
+        "chain_id": "service_account_misuse",
+        "fired": true,
+        "fired_required_rules": [
+          "okta_service_account_token_use",
+          "workspace_oauth_scope_broad",
+          "atlas_query_export_anomaly"
+        ],
+        "layer_count": 3,
+        "window_minutes_observed": 22
+      }
+    },
+    {
+      "case_id": "service_account_misuse_negative",
+      "chain_id": "service_account_misuse",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [],
+      "chain_result": {
+        "chain_id": "service_account_misuse",
+        "fired": false,
+        "fired_required_rules": [],
+        "layer_count": 0,
+        "window_minutes_observed": 0
+      }
+    },
+    {
+      "case_id": "service_account_misuse_edge",
+      "chain_id": "service_account_misuse",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [
+        "okta_service_account_token_use",
+        "atlas_query_export_anomaly"
+      ],
+      "chain_result": {
+        "chain_id": "service_account_misuse",
+        "fired": false,
+        "fired_required_rules": [
+          "okta_service_account_token_use",
+          "atlas_query_export_anomaly"
+        ],
+        "layer_count": 2,
+        "window_minutes_observed": 12
+      }
+    },
+    {
+      "case_id": "policy_weakening_chain_positive",
+      "chain_id": "policy_weakening_chain",
+      "expected": "fire",
+      "actual": "fire",
+      "passed": true,
+      "fired_rules": [
+        "okta_policy_mfa_weakened",
+        "workspace_external_drive_share",
+        "workspace_admin_security_change"
+      ],
+      "chain_result": {
+        "chain_id": "policy_weakening_chain",
+        "fired": true,
+        "fired_required_rules": [
+          "okta_policy_mfa_weakened",
+          "workspace_admin_security_change",
+          "workspace_external_drive_share"
+        ],
+        "layer_count": 2,
+        "window_minutes_observed": 18
+      }
+    },
+    {
+      "case_id": "policy_weakening_chain_negative",
+      "chain_id": "policy_weakening_chain",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [],
+      "chain_result": {
+        "chain_id": "policy_weakening_chain",
+        "fired": false,
+        "fired_required_rules": [],
+        "layer_count": 0,
+        "window_minutes_observed": 0
+      }
+    },
+    {
+      "case_id": "policy_weakening_chain_edge",
+      "chain_id": "policy_weakening_chain",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [
+        "okta_policy_mfa_weakened",
+        "workspace_external_drive_share"
+      ],
+      "chain_result": {
+        "chain_id": "policy_weakening_chain",
+        "fired": false,
+        "fired_required_rules": [
+          "okta_policy_mfa_weakened",
+          "workspace_external_drive_share"
+        ],
+        "layer_count": 2,
+        "window_minutes_observed": 20
+      }
+    },
+    {
+      "case_id": "database_access_after_saas_pivot_positive",
+      "chain_id": "database_access_after_saas_pivot",
+      "expected": "fire",
+      "actual": "fire",
+      "passed": true,
+      "fired_rules": [
+        "okta_recovery_factor_reset",
+        "workspace_drive_download_spike",
+        "atlas_network_access_expanded"
+      ],
+      "chain_result": {
+        "chain_id": "database_access_after_saas_pivot",
+        "fired": true,
+        "fired_required_rules": [
+          "okta_recovery_factor_reset",
+          "workspace_drive_download_spike",
+          "atlas_network_access_expanded"
+        ],
+        "layer_count": 3,
+        "window_minutes_observed": 30
+      }
+    },
+    {
+      "case_id": "database_access_after_saas_pivot_negative",
+      "chain_id": "database_access_after_saas_pivot",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [],
+      "chain_result": {
+        "chain_id": "database_access_after_saas_pivot",
+        "fired": false,
+        "fired_required_rules": [],
+        "layer_count": 0,
+        "window_minutes_observed": 0
+      }
+    },
+    {
+      "case_id": "database_access_after_saas_pivot_edge",
+      "chain_id": "database_access_after_saas_pivot",
+      "expected": "suppress",
+      "actual": "suppress",
+      "passed": true,
+      "fired_rules": [
+        "okta_recovery_factor_reset",
+        "atlas_network_access_expanded"
+      ],
+      "chain_result": {
+        "chain_id": "database_access_after_saas_pivot",
+        "fired": false,
+        "fired_required_rules": [
+          "okta_recovery_factor_reset",
+          "atlas_network_access_expanded"
+        ],
+        "layer_count": 2,
+        "window_minutes_observed": 30
+      }
+    }
+  ],
+  "self_tests": [
+    {
+      "id": "reject_malformed_rule",
+      "passed": true
+    },
+    {
+      "id": "reject_missing_required_event_field",
+      "passed": true
+    },
+    {
+      "id": "detect_expected_outcome_mismatch",
+      "passed": true
+    },
+    {
+      "id": "detect_chain_window_break",
+      "passed": true
+    },
+    {
+      "id": "detect_privacy_scan_dependency",
+      "passed": true
+    }
+  ]
+}

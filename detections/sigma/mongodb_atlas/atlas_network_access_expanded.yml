@@ -1,0 +1,16 @@
+title: MongoDB Atlas Network Access Expanded
+id: atlas_network_access_expanded
+status: test
+description: Atlas network access list expanded to a broad source range.
+logsource:
+  product: mongodb_atlas
+  service: activity_feed
+detection:
+  selection:
+    eventTypeName: NETWORK_PERMISSION_ENTRY_ADDED
+    targetPublicIp: 0.0.0.0/0
+  condition: selection
+falsepositives:
+  - Short-lived troubleshooting range that was approved and quickly removed.
+level: high
+

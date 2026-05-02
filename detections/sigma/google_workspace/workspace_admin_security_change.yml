@@ -1,0 +1,16 @@
+title: Google Workspace Admin Security Change
+id: workspace_admin_security_change
+status: test
+description: Administrative security setting changed in Google Workspace.
+logsource:
+  product: google_workspace
+  service: reports
+detection:
+  selection:
+    applicationName: admin
+    events.type: SECURITY_SETTINGS
+  condition: selection
+falsepositives:
+  - Approved security configuration change.
+level: high
+

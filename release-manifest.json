@@ -1,0 +1,36 @@
+{
+  "project": "SaaS Attack Chain Detection Lab",
+  "version": "0.1.0",
+  "counts": {
+    "chains": 8,
+    "rules": 16,
+    "detection_types": 12,
+    "three_layer_chains": 4,
+    "validation_cases": 24,
+    "self_tests": 5,
+    "evidence_items": 9,
+    "captured_evidence_items": 8,
+    "documented_evidence_blockers": 1
+  },
+  "lab_modeling": {
+    "real": [
+      "Detection design",
+      "Local validation harness",
+      "Public-safe verification",
+      "Sanitized service-surface evidence",
+      "Documented service privilege boundaries"
+    ],
+    "modeled": [
+      "Events",
+      "Users",
+      "Source addresses",
+      "Correlation windows",
+      "Alert outcomes"
+    ],
+    "not_claimed": [
+      "Production operation",
+      "Confirmed data loss",
+      "Complete SaaS breach coverage"
+    ]
+  }
+}

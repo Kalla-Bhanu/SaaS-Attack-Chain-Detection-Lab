@@ -1,0 +1,16 @@
+title: Google Workspace Drive Download Spike
+id: workspace_drive_download_spike
+status: test
+description: Multiple Drive download events by the same modeled user.
+logsource:
+  product: google_workspace
+  service: reports
+detection:
+  selection:
+    applicationName: drive
+    events.name: download
+  condition: selection
+falsepositives:
+  - Bulk legitimate document export or data migration.
+level: medium
+

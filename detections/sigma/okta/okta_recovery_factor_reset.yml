@@ -1,0 +1,16 @@
+title: Okta Recovery Factor Reset For Privileged User
+id: okta_recovery_factor_reset
+status: test
+description: Recovery factor or authenticator reset for a privileged synthetic user.
+logsource:
+  product: okta
+  service: system
+detection:
+  selection:
+    eventType: user.mfa.factor.reset_all
+    target.displayName|contains: privileged
+  condition: selection
+falsepositives:
+  - Approved account recovery or hardware replacement.
+level: high
+

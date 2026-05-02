@@ -1,0 +1,16 @@
+title: Okta Admin Role Grant
+id: okta_admin_role_grant
+status: test
+description: Privileged Okta role grant that changes administrative access.
+logsource:
+  product: okta
+  service: system
+detection:
+  selection:
+    eventType: user.account.privilege.grant
+    target.displayName|contains: Administrator
+  condition: selection
+falsepositives:
+  - Approved access change with ticketed owner approval.
+level: high
+

@@ -1,0 +1,766 @@
+{
+  "cases": [
+    {
+      "case_id": "credential_stuffing_to_oauth_abuse_positive",
+      "chain_id": "credential_stuffing_to_oauth_abuse",
+      "expected": "fire",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.failed",
+          "published": "2026-04-01T13:00:00.000Z",
+          "actor": { "id": "00u-lab-001", "type": "User", "alternateId": "user-001@example.com", "displayName": "Lab User 001" },
+          "client": { "ipAddress": "198.51.100.10", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "FAILURE", "reason": "INVALID_CREDENTIALS" },
+          "target": [],
+          "transaction": { "id": "txn-cs-001-1" },
+          "authenticationContext": { "externalSessionId": "sid-cs-001" }
+        },
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.failed",
+          "published": "2026-04-01T13:01:00.000Z",
+          "actor": { "id": "00u-lab-001", "type": "User", "alternateId": "user-001@example.com", "displayName": "Lab User 001" },
+          "client": { "ipAddress": "198.51.100.11", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "FAILURE", "reason": "INVALID_CREDENTIALS" },
+          "target": [],
+          "transaction": { "id": "txn-cs-001-2" },
+          "authenticationContext": { "externalSessionId": "sid-cs-001" }
+        },
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.failed",
+          "published": "2026-04-01T13:02:00.000Z",
+          "actor": { "id": "00u-lab-001", "type": "User", "alternateId": "user-001@example.com", "displayName": "Lab User 001" },
+          "client": { "ipAddress": "198.51.100.12", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "FAILURE", "reason": "INVALID_CREDENTIALS" },
+          "target": [],
+          "transaction": { "id": "txn-cs-001-3" },
+          "authenticationContext": { "externalSessionId": "sid-cs-001" }
+        },
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.failed",
+          "published": "2026-04-01T13:03:00.000Z",
+          "actor": { "id": "00u-lab-001", "type": "User", "alternateId": "user-001@example.com", "displayName": "Lab User 001" },
+          "client": { "ipAddress": "198.51.100.13", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "FAILURE", "reason": "INVALID_CREDENTIALS" },
+          "target": [],
+          "transaction": { "id": "txn-cs-001-4" },
+          "authenticationContext": { "externalSessionId": "sid-cs-001" }
+        },
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.failed",
+          "published": "2026-04-01T13:04:00.000Z",
+          "actor": { "id": "00u-lab-001", "type": "User", "alternateId": "user-001@example.com", "displayName": "Lab User 001" },
+          "client": { "ipAddress": "198.51.100.14", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "FAILURE", "reason": "INVALID_CREDENTIALS" },
+          "target": [],
+          "transaction": { "id": "txn-cs-001-5" },
+          "authenticationContext": { "externalSessionId": "sid-cs-001" }
+        },
+        {
+          "platform": "okta",
+          "eventType": "application.oauth2.grant.consent",
+          "published": "2026-04-01T13:15:00.000Z",
+          "actor": { "id": "00u-lab-001", "type": "User", "alternateId": "user-001@example.com", "displayName": "Lab User 001" },
+          "client": { "ipAddress": "198.51.100.20", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "app-lab-drive-sync", "type": "AppInstance", "displayName": "Lab Drive Sync" }],
+          "transaction": { "id": "txn-cs-001-6" },
+          "authenticationContext": { "externalSessionId": "sid-cs-001" },
+          "debugContext": { "debugData": { "scopes": "openid profile drive.readonly" } }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "token",
+          "id": { "time": "2026-04-01T13:18:00.000Z", "uniqueQualifier": "gw-cs-001" },
+          "actor": { "email": "user-001@example.com", "profileId": "profile-lab-001" },
+          "ipAddress": "198.51.100.20",
+          "events": [{ "name": "authorize", "type": "oauth", "parameters": [{ "name": "scope", "value": "https://www.googleapis.com/auth/drive.readonly" }] }]
+        }
+      ]
+    },
+    {
+      "case_id": "credential_stuffing_to_oauth_abuse_negative",
+      "chain_id": "credential_stuffing_to_oauth_abuse",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.failed",
+          "published": "2026-04-01T14:00:00.000Z",
+          "actor": { "id": "00u-lab-002", "type": "User", "alternateId": "user-002@example.com", "displayName": "Lab User 002" },
+          "client": { "ipAddress": "203.0.113.10", "zone": "trusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "macOS" } },
+          "outcome": { "result": "FAILURE", "reason": "INVALID_CREDENTIALS" },
+          "target": [],
+          "transaction": { "id": "txn-cs-002-1" },
+          "authenticationContext": { "externalSessionId": "sid-cs-002" }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "token",
+          "id": { "time": "2026-04-01T14:06:00.000Z", "uniqueQualifier": "gw-cs-002" },
+          "actor": { "email": "user-002@example.com", "profileId": "profile-lab-002" },
+          "ipAddress": "203.0.113.10",
+          "events": [{ "name": "authorize", "type": "oauth", "parameters": [{ "name": "scope", "value": "openid profile" }] }]
+        }
+      ]
+    },
+    {
+      "case_id": "credential_stuffing_to_oauth_abuse_edge",
+      "chain_id": "credential_stuffing_to_oauth_abuse",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "application.oauth2.grant.consent",
+          "published": "2026-04-01T15:00:00.000Z",
+          "actor": { "id": "00u-lab-003", "type": "User", "alternateId": "user-003@example.com", "displayName": "Lab User 003" },
+          "client": { "ipAddress": "198.51.100.30", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "app-lab-drive-sync", "type": "AppInstance", "displayName": "Lab Drive Sync" }],
+          "transaction": { "id": "txn-cs-003-1" },
+          "authenticationContext": { "externalSessionId": "sid-cs-003" },
+          "debugContext": { "debugData": { "scopes": "openid profile drive.readonly" } }
+        }
+      ]
+    },
+    {
+      "case_id": "mfa_fatigue_to_admin_action_positive",
+      "chain_id": "mfa_fatigue_to_admin_action",
+      "expected": "fire",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.auth_via_mfa",
+          "published": "2026-04-02T10:00:00.000Z",
+          "actor": { "id": "00u-admin-001", "type": "User", "alternateId": "admin-001@example.com", "displayName": "Lab Admin 001" },
+          "client": { "ipAddress": "198.51.100.40", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "CHALLENGE", "reason": "PUSH_SENT" },
+          "target": [],
+          "transaction": { "id": "txn-mfa-001-1" },
+          "authenticationContext": { "externalSessionId": "sid-mfa-001" }
+        },
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.auth_via_mfa",
+          "published": "2026-04-02T10:01:00.000Z",
+          "actor": { "id": "00u-admin-001", "type": "User", "alternateId": "admin-001@example.com", "displayName": "Lab Admin 001" },
+          "client": { "ipAddress": "198.51.100.40", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "CHALLENGE", "reason": "PUSH_SENT" },
+          "target": [],
+          "transaction": { "id": "txn-mfa-001-2" },
+          "authenticationContext": { "externalSessionId": "sid-mfa-001" }
+        },
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.auth_via_mfa",
+          "published": "2026-04-02T10:02:00.000Z",
+          "actor": { "id": "00u-admin-001", "type": "User", "alternateId": "admin-001@example.com", "displayName": "Lab Admin 001" },
+          "client": { "ipAddress": "198.51.100.40", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "CHALLENGE", "reason": "PUSH_SENT" },
+          "target": [],
+          "transaction": { "id": "txn-mfa-001-3" },
+          "authenticationContext": { "externalSessionId": "sid-mfa-001" }
+        },
+        {
+          "platform": "okta",
+          "eventType": "user.account.privilege.grant",
+          "published": "2026-04-02T10:08:00.000Z",
+          "actor": { "id": "00u-admin-001", "type": "User", "alternateId": "admin-001@example.com", "displayName": "Lab Admin 001" },
+          "client": { "ipAddress": "198.51.100.40", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "role-lab-super", "type": "Role", "displayName": "Super Administrator" }],
+          "transaction": { "id": "txn-mfa-001-4" },
+          "authenticationContext": { "externalSessionId": "sid-mfa-001" }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "admin",
+          "id": { "time": "2026-04-02T10:12:00.000Z", "uniqueQualifier": "gw-mfa-001" },
+          "actor": { "email": "admin-001@example.com", "profileId": "profile-admin-001" },
+          "ipAddress": "198.51.100.40",
+          "events": [{ "name": "CHANGE_2SV_SETTING", "type": "SECURITY_SETTINGS", "parameters": [{ "name": "setting_name", "value": "two_step_verification" }] }]
+        }
+      ]
+    },
+    {
+      "case_id": "mfa_fatigue_to_admin_action_negative",
+      "chain_id": "mfa_fatigue_to_admin_action",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.auth_via_mfa",
+          "published": "2026-04-02T11:00:00.000Z",
+          "actor": { "id": "00u-admin-002", "type": "User", "alternateId": "admin-002@example.com", "displayName": "Lab Admin 002" },
+          "client": { "ipAddress": "203.0.113.40", "zone": "trusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "macOS" } },
+          "outcome": { "result": "CHALLENGE", "reason": "PUSH_SENT" },
+          "target": [],
+          "transaction": { "id": "txn-mfa-002-1" },
+          "authenticationContext": { "externalSessionId": "sid-mfa-002" }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "admin",
+          "id": { "time": "2026-04-02T11:08:00.000Z", "uniqueQualifier": "gw-mfa-002" },
+          "actor": { "email": "admin-002@example.com", "profileId": "profile-admin-002" },
+          "ipAddress": "203.0.113.40",
+          "events": [{ "name": "VIEW_SECURITY_CENTER", "type": "REPORT_VIEW", "parameters": [{ "name": "view", "value": "summary" }] }]
+        }
+      ]
+    },
+    {
+      "case_id": "mfa_fatigue_to_admin_action_edge",
+      "chain_id": "mfa_fatigue_to_admin_action",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.authentication.auth_via_mfa",
+          "published": "2026-04-02T12:00:00.000Z",
+          "actor": { "id": "00u-admin-003", "type": "User", "alternateId": "admin-003@example.com", "displayName": "Lab Admin 003" },
+          "client": { "ipAddress": "198.51.100.41", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "CHALLENGE", "reason": "PUSH_SENT" },
+          "target": [],
+          "transaction": { "id": "txn-mfa-003-1" },
+          "authenticationContext": { "externalSessionId": "sid-mfa-003" }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "admin",
+          "id": { "time": "2026-04-02T12:10:00.000Z", "uniqueQualifier": "gw-mfa-003" },
+          "actor": { "email": "admin-003@example.com", "profileId": "profile-admin-003" },
+          "ipAddress": "198.51.100.41",
+          "events": [{ "name": "CHANGE_2SV_SETTING", "type": "SECURITY_SETTINGS", "parameters": [{ "name": "setting_name", "value": "two_step_verification" }] }]
+        }
+      ]
+    },
+    {
+      "case_id": "suspicious_session_to_data_access_positive",
+      "chain_id": "suspicious_session_to_data_access",
+      "expected": "fire",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.session.start",
+          "published": "2026-04-03T09:00:00.000Z",
+          "actor": { "id": "00u-lab-004", "type": "User", "alternateId": "user-004@example.com", "displayName": "Lab User 004" },
+          "client": { "ipAddress": "198.51.100.50", "zone": "untrusted", "device": "Unknown", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Linux" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [],
+          "transaction": { "id": "txn-sess-001" },
+          "authenticationContext": { "externalSessionId": "sid-sess-001" }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "drive",
+          "id": { "time": "2026-04-03T09:10:00.000Z", "uniqueQualifier": "gw-sess-001-a" },
+          "actor": { "email": "user-004@example.com", "profileId": "profile-lab-004" },
+          "ipAddress": "198.51.100.50",
+          "events": [{ "name": "download", "type": "access", "parameters": [{ "name": "doc_type", "value": "spreadsheet" }] }]
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "drive",
+          "id": { "time": "2026-04-03T09:11:00.000Z", "uniqueQualifier": "gw-sess-001-b" },
+          "actor": { "email": "user-004@example.com", "profileId": "profile-lab-004" },
+          "ipAddress": "198.51.100.50",
+          "events": [{ "name": "download", "type": "access", "parameters": [{ "name": "doc_type", "value": "document" }] }]
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "drive",
+          "id": { "time": "2026-04-03T09:12:00.000Z", "uniqueQualifier": "gw-sess-001-c" },
+          "actor": { "email": "user-004@example.com", "profileId": "profile-lab-004" },
+          "ipAddress": "198.51.100.50",
+          "events": [{ "name": "download", "type": "access", "parameters": [{ "name": "doc_type", "value": "pdf" }] }]
+        },
+        {
+          "platform": "mongodb_atlas",
+          "created": "2026-04-03T09:25:00.000Z",
+          "eventTypeName": "DATA_EXPLORER_QUERY_EXECUTED",
+          "groupId": "group-saas-lab",
+          "orgId": "org-saas-lab",
+          "clusterName": "cluster-lab-01",
+          "username": "db-user-004@example.com",
+          "remoteAddress": "198.51.100.50",
+          "result": { "documentCount": 9000 }
+        }
+      ]
+    },
+    {
+      "case_id": "suspicious_session_to_data_access_negative",
+      "chain_id": "suspicious_session_to_data_access",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.session.start",
+          "published": "2026-04-03T10:00:00.000Z",
+          "actor": { "id": "00u-lab-005", "type": "User", "alternateId": "user-005@example.com", "displayName": "Lab User 005" },
+          "client": { "ipAddress": "203.0.113.50", "zone": "trusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "macOS" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [],
+          "transaction": { "id": "txn-sess-002" },
+          "authenticationContext": { "externalSessionId": "sid-sess-002" }
+        }
+      ]
+    },
+    {
+      "case_id": "suspicious_session_to_data_access_edge",
+      "chain_id": "suspicious_session_to_data_access",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.session.start",
+          "published": "2026-04-03T11:00:00.000Z",
+          "actor": { "id": "00u-lab-006", "type": "User", "alternateId": "user-006@example.com", "displayName": "Lab User 006" },
+          "client": { "ipAddress": "198.51.100.51", "zone": "untrusted", "device": "Unknown", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Linux" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [],
+          "transaction": { "id": "txn-sess-003" },
+          "authenticationContext": { "externalSessionId": "sid-sess-003" }
+        },
+        {
+          "platform": "mongodb_atlas",
+          "created": "2026-04-03T11:40:00.000Z",
+          "eventTypeName": "DATA_EXPLORER_QUERY_EXECUTED",
+          "groupId": "group-saas-lab",
+          "orgId": "org-saas-lab",
+          "clusterName": "cluster-lab-01",
+          "username": "db-user-006@example.com",
+          "remoteAddress": "198.51.100.51",
+          "result": { "documentCount": 9000 }
+        }
+      ]
+    },
+    {
+      "case_id": "oauth_app_abuse_to_workspace_exfil_positive",
+      "chain_id": "oauth_app_abuse_to_workspace_exfil",
+      "expected": "fire",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "application.oauth2.grant.consent",
+          "published": "2026-04-04T08:00:00.000Z",
+          "actor": { "id": "00u-lab-007", "type": "User", "alternateId": "user-007@example.com", "displayName": "Lab User 007" },
+          "client": { "ipAddress": "198.51.100.60", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "app-lab-oauth", "type": "AppInstance", "displayName": "Lab OAuth Utility" }],
+          "transaction": { "id": "txn-oauth-001" },
+          "authenticationContext": { "externalSessionId": "sid-oauth-001" },
+          "debugContext": { "debugData": { "scopes": "openid profile drive.readonly" } }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "token",
+          "id": { "time": "2026-04-04T08:04:00.000Z", "uniqueQualifier": "gw-oauth-001-a" },
+          "actor": { "email": "user-007@example.com", "profileId": "profile-lab-007" },
+          "ipAddress": "198.51.100.60",
+          "events": [{ "name": "authorize", "type": "oauth", "parameters": [{ "name": "scope", "value": "https://www.googleapis.com/auth/drive.readonly" }] }]
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "drive",
+          "id": { "time": "2026-04-04T08:18:00.000Z", "uniqueQualifier": "gw-oauth-001-b" },
+          "actor": { "email": "user-007@example.com", "profileId": "profile-lab-007" },
+          "ipAddress": "198.51.100.60",
+          "events": [{ "name": "change_user_access", "type": "acl_change", "parameters": [{ "name": "visibility", "value": "external" }] }]
+        }
+      ]
+    },
+    {
+      "case_id": "oauth_app_abuse_to_workspace_exfil_negative",
+      "chain_id": "oauth_app_abuse_to_workspace_exfil",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "google_workspace",
+          "applicationName": "token",
+          "id": { "time": "2026-04-04T09:00:00.000Z", "uniqueQualifier": "gw-oauth-002" },
+          "actor": { "email": "user-008@example.com", "profileId": "profile-lab-008" },
+          "ipAddress": "203.0.113.60",
+          "events": [{ "name": "authorize", "type": "oauth", "parameters": [{ "name": "scope", "value": "openid profile" }] }]
+        }
+      ]
+    },
+    {
+      "case_id": "oauth_app_abuse_to_workspace_exfil_edge",
+      "chain_id": "oauth_app_abuse_to_workspace_exfil",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "application.oauth2.grant.consent",
+          "published": "2026-04-04T10:00:00.000Z",
+          "actor": { "id": "00u-lab-009", "type": "User", "alternateId": "user-009@example.com", "displayName": "Lab User 009" },
+          "client": { "ipAddress": "198.51.100.61", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "app-lab-oauth", "type": "AppInstance", "displayName": "Lab OAuth Utility" }],
+          "transaction": { "id": "txn-oauth-003" },
+          "authenticationContext": { "externalSessionId": "sid-oauth-003" },
+          "debugContext": { "debugData": { "scopes": "openid profile drive.readonly" } }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "token",
+          "id": { "time": "2026-04-04T10:06:00.000Z", "uniqueQualifier": "gw-oauth-003" },
+          "actor": { "email": "user-009@example.com", "profileId": "profile-lab-009" },
+          "ipAddress": "198.51.100.61",
+          "events": [{ "name": "authorize", "type": "oauth", "parameters": [{ "name": "scope", "value": "https://www.googleapis.com/auth/drive.readonly" }] }]
+        }
+      ]
+    },
+    {
+      "case_id": "admin_account_takeover_positive",
+      "chain_id": "admin_account_takeover",
+      "expected": "fire",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.account.privilege.grant",
+          "published": "2026-04-05T08:00:00.000Z",
+          "actor": { "id": "00u-admin-010", "type": "User", "alternateId": "admin-010@example.com", "displayName": "Lab Admin 010" },
+          "client": { "ipAddress": "198.51.100.70", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "role-lab-super", "type": "Role", "displayName": "Super Administrator" }],
+          "transaction": { "id": "txn-admin-001" },
+          "authenticationContext": { "externalSessionId": "sid-admin-001" }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "admin",
+          "id": { "time": "2026-04-05T08:10:00.000Z", "uniqueQualifier": "gw-admin-001" },
+          "actor": { "email": "admin-010@example.com", "profileId": "profile-admin-010" },
+          "ipAddress": "198.51.100.70",
+          "events": [{ "name": "CHANGE_2SV_SETTING", "type": "SECURITY_SETTINGS", "parameters": [{ "name": "setting_name", "value": "two_step_verification" }] }]
+        },
+        {
+          "platform": "mongodb_atlas",
+          "created": "2026-04-05T08:18:00.000Z",
+          "eventTypeName": "DATABASE_USER_ROLES_CHANGED",
+          "groupId": "group-saas-lab",
+          "orgId": "org-saas-lab",
+          "clusterName": "cluster-lab-01",
+          "username": "db-admin-010@example.com",
+          "remoteAddress": "198.51.100.70",
+          "roles": [{ "roleName": "readWriteAnyDatabase", "databaseName": "admin" }]
+        }
+      ]
+    },
+    {
+      "case_id": "admin_account_takeover_negative",
+      "chain_id": "admin_account_takeover",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "mongodb_atlas",
+          "created": "2026-04-05T09:00:00.000Z",
+          "eventTypeName": "DATABASE_USER_ROLES_CHANGED",
+          "groupId": "group-saas-lab",
+          "orgId": "org-saas-lab",
+          "clusterName": "cluster-lab-01",
+          "username": "db-admin-011@example.com",
+          "remoteAddress": "203.0.113.70",
+          "roles": [{ "roleName": "read", "databaseName": "reports" }]
+        }
+      ]
+    },
+    {
+      "case_id": "admin_account_takeover_edge",
+      "chain_id": "admin_account_takeover",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "google_workspace",
+          "applicationName": "admin",
+          "id": { "time": "2026-04-05T10:00:00.000Z", "uniqueQualifier": "gw-admin-003" },
+          "actor": { "email": "admin-012@example.com", "profileId": "profile-admin-012" },
+          "ipAddress": "198.51.100.71",
+          "events": [{ "name": "CHANGE_2SV_SETTING", "type": "SECURITY_SETTINGS", "parameters": [{ "name": "setting_name", "value": "two_step_verification" }] }]
+        },
+        {
+          "platform": "mongodb_atlas",
+          "created": "2026-04-05T10:20:00.000Z",
+          "eventTypeName": "DATABASE_USER_ROLES_CHANGED",
+          "groupId": "group-saas-lab",
+          "orgId": "org-saas-lab",
+          "clusterName": "cluster-lab-01",
+          "username": "db-admin-012@example.com",
+          "remoteAddress": "198.51.100.71",
+          "roles": [{ "roleName": "readWriteAnyDatabase", "databaseName": "admin" }]
+        }
+      ]
+    },
+    {
+      "case_id": "service_account_misuse_positive",
+      "chain_id": "service_account_misuse",
+      "expected": "fire",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "system.api_token.request",
+          "published": "2026-04-06T08:00:00.000Z",
+          "actor": { "id": "svc-lab-001", "type": "ServiceAccount", "alternateId": "svc-ci@example.com", "displayName": "Lab CI Service" },
+          "client": { "ipAddress": "198.51.100.80", "zone": "untrusted", "device": "Server", "userAgent": { "rawUserAgent": "lab-runner/1.0", "browser": "OTHER", "os": "Linux" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [],
+          "transaction": { "id": "txn-svc-001" },
+          "authenticationContext": { "externalSessionId": "sid-svc-001" }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "token",
+          "id": { "time": "2026-04-06T08:05:00.000Z", "uniqueQualifier": "gw-svc-001" },
+          "actor": { "email": "svc-ci@example.com", "profileId": "profile-svc-001" },
+          "ipAddress": "198.51.100.80",
+          "events": [{ "name": "authorize", "type": "oauth", "parameters": [{ "name": "scope", "value": "https://www.googleapis.com/auth/drive.readonly" }] }]
+        },
+        {
+          "platform": "mongodb_atlas",
+          "created": "2026-04-06T08:22:00.000Z",
+          "eventTypeName": "DATA_EXPLORER_QUERY_EXECUTED",
+          "groupId": "group-saas-lab",
+          "orgId": "org-saas-lab",
+          "clusterName": "cluster-lab-01",
+          "username": "svc-ci@example.com",
+          "remoteAddress": "198.51.100.80",
+          "result": { "documentCount": 12000 }
+        }
+      ]
+    },
+    {
+      "case_id": "service_account_misuse_negative",
+      "chain_id": "service_account_misuse",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "system.api_token.request",
+          "published": "2026-04-06T09:00:00.000Z",
+          "actor": { "id": "svc-lab-002", "type": "ServiceAccount", "alternateId": "svc-build@example.com", "displayName": "Lab Build Service" },
+          "client": { "ipAddress": "203.0.113.80", "zone": "trusted", "device": "Server", "userAgent": { "rawUserAgent": "lab-runner/1.0", "browser": "OTHER", "os": "Linux" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [],
+          "transaction": { "id": "txn-svc-002" },
+          "authenticationContext": { "externalSessionId": "sid-svc-002" }
+        }
+      ]
+    },
+    {
+      "case_id": "service_account_misuse_edge",
+      "chain_id": "service_account_misuse",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "system.api_token.request",
+          "published": "2026-04-06T10:00:00.000Z",
+          "actor": { "id": "svc-lab-003", "type": "ServiceAccount", "alternateId": "svc-data@example.com", "displayName": "Lab Data Service" },
+          "client": { "ipAddress": "198.51.100.81", "zone": "untrusted", "device": "Server", "userAgent": { "rawUserAgent": "lab-runner/1.0", "browser": "OTHER", "os": "Linux" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [],
+          "transaction": { "id": "txn-svc-003" },
+          "authenticationContext": { "externalSessionId": "sid-svc-003" }
+        },
+        {
+          "platform": "mongodb_atlas",
+          "created": "2026-04-06T10:12:00.000Z",
+          "eventTypeName": "DATA_EXPLORER_QUERY_EXECUTED",
+          "groupId": "group-saas-lab",
+          "orgId": "org-saas-lab",
+          "clusterName": "cluster-lab-01",
+          "username": "svc-data@example.com",
+          "remoteAddress": "198.51.100.81",
+          "result": { "documentCount": 12000 }
+        }
+      ]
+    },
+    {
+      "case_id": "policy_weakening_chain_positive",
+      "chain_id": "policy_weakening_chain",
+      "expected": "fire",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "policy.rule.update",
+          "published": "2026-04-07T08:00:00.000Z",
+          "actor": { "id": "00u-admin-020", "type": "User", "alternateId": "admin-020@example.com", "displayName": "Lab Admin 020" },
+          "client": { "ipAddress": "198.51.100.90", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "policy-lab-001", "type": "PolicyRule", "displayName": "Lab MFA Policy" }],
+          "transaction": { "id": "txn-policy-001" },
+          "authenticationContext": { "externalSessionId": "sid-policy-001" },
+          "debugContext": { "debugData": { "change": "mfa_disabled for low assurance access" } }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "admin",
+          "id": { "time": "2026-04-07T08:10:00.000Z", "uniqueQualifier": "gw-policy-001-a" },
+          "actor": { "email": "admin-020@example.com", "profileId": "profile-admin-020" },
+          "ipAddress": "198.51.100.90",
+          "events": [{ "name": "CHANGE_SHARING_SETTING", "type": "SECURITY_SETTINGS", "parameters": [{ "name": "sharing_policy", "value": "less_restrictive" }] }]
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "drive",
+          "id": { "time": "2026-04-07T08:18:00.000Z", "uniqueQualifier": "gw-policy-001-b" },
+          "actor": { "email": "admin-020@example.com", "profileId": "profile-admin-020" },
+          "ipAddress": "198.51.100.90",
+          "events": [{ "name": "change_user_access", "type": "acl_change", "parameters": [{ "name": "visibility", "value": "external" }] }]
+        }
+      ]
+    },
+    {
+      "case_id": "policy_weakening_chain_negative",
+      "chain_id": "policy_weakening_chain",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "policy.rule.update",
+          "published": "2026-04-07T09:00:00.000Z",
+          "actor": { "id": "00u-admin-021", "type": "User", "alternateId": "admin-021@example.com", "displayName": "Lab Admin 021" },
+          "client": { "ipAddress": "203.0.113.90", "zone": "trusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "macOS" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "policy-lab-002", "type": "PolicyRule", "displayName": "Lab MFA Policy" }],
+          "transaction": { "id": "txn-policy-002" },
+          "authenticationContext": { "externalSessionId": "sid-policy-002" },
+          "debugContext": { "debugData": { "change": "mfa_required for low assurance access" } }
+        }
+      ]
+    },
+    {
+      "case_id": "policy_weakening_chain_edge",
+      "chain_id": "policy_weakening_chain",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "policy.rule.update",
+          "published": "2026-04-07T10:00:00.000Z",
+          "actor": { "id": "00u-admin-022", "type": "User", "alternateId": "admin-022@example.com", "displayName": "Lab Admin 022" },
+          "client": { "ipAddress": "198.51.100.91", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "policy-lab-003", "type": "PolicyRule", "displayName": "Lab MFA Policy" }],
+          "transaction": { "id": "txn-policy-003" },
+          "authenticationContext": { "externalSessionId": "sid-policy-003" },
+          "debugContext": { "debugData": { "change": "mfa_disabled for low assurance access" } }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "drive",
+          "id": { "time": "2026-04-07T10:20:00.000Z", "uniqueQualifier": "gw-policy-003" },
+          "actor": { "email": "admin-022@example.com", "profileId": "profile-admin-022" },
+          "ipAddress": "198.51.100.91",
+          "events": [{ "name": "change_user_access", "type": "acl_change", "parameters": [{ "name": "visibility", "value": "external" }] }]
+        }
+      ]
+    },
+    {
+      "case_id": "database_access_after_saas_pivot_positive",
+      "chain_id": "database_access_after_saas_pivot",
+      "expected": "fire",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.mfa.factor.reset_all",
+          "published": "2026-04-08T08:00:00.000Z",
+          "actor": { "id": "00u-admin-030", "type": "User", "alternateId": "admin-030@example.com", "displayName": "Lab Admin 030" },
+          "client": { "ipAddress": "198.51.100.100", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "00u-privileged-001", "type": "User", "displayName": "privileged database owner" }],
+          "transaction": { "id": "txn-db-001" },
+          "authenticationContext": { "externalSessionId": "sid-db-001" }
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "drive",
+          "id": { "time": "2026-04-08T08:10:00.000Z", "uniqueQualifier": "gw-db-001-a" },
+          "actor": { "email": "admin-030@example.com", "profileId": "profile-admin-030" },
+          "ipAddress": "198.51.100.100",
+          "events": [{ "name": "download", "type": "access", "parameters": [{ "name": "doc_type", "value": "spreadsheet" }] }]
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "drive",
+          "id": { "time": "2026-04-08T08:11:00.000Z", "uniqueQualifier": "gw-db-001-b" },
+          "actor": { "email": "admin-030@example.com", "profileId": "profile-admin-030" },
+          "ipAddress": "198.51.100.100",
+          "events": [{ "name": "download", "type": "access", "parameters": [{ "name": "doc_type", "value": "document" }] }]
+        },
+        {
+          "platform": "google_workspace",
+          "applicationName": "drive",
+          "id": { "time": "2026-04-08T08:12:00.000Z", "uniqueQualifier": "gw-db-001-c" },
+          "actor": { "email": "admin-030@example.com", "profileId": "profile-admin-030" },
+          "ipAddress": "198.51.100.100",
+          "events": [{ "name": "download", "type": "access", "parameters": [{ "name": "doc_type", "value": "pdf" }] }]
+        },
+        {
+          "platform": "mongodb_atlas",
+          "created": "2026-04-08T08:30:00.000Z",
+          "eventTypeName": "NETWORK_PERMISSION_ENTRY_ADDED",
+          "groupId": "group-saas-lab",
+          "orgId": "org-saas-lab",
+          "clusterName": "cluster-lab-01",
+          "username": "db-admin-030@example.com",
+          "remoteAddress": "198.51.100.100",
+          "targetPublicIp": "0.0.0.0/0"
+        }
+      ]
+    },
+    {
+      "case_id": "database_access_after_saas_pivot_negative",
+      "chain_id": "database_access_after_saas_pivot",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.mfa.factor.reset_all",
+          "published": "2026-04-08T09:00:00.000Z",
+          "actor": { "id": "00u-admin-031", "type": "User", "alternateId": "admin-031@example.com", "displayName": "Lab Admin 031" },
+          "client": { "ipAddress": "203.0.113.100", "zone": "trusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "macOS" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "00u-standard-001", "type": "User", "displayName": "standard user" }],
+          "transaction": { "id": "txn-db-002" },
+          "authenticationContext": { "externalSessionId": "sid-db-002" }
+        }
+      ]
+    },
+    {
+      "case_id": "database_access_after_saas_pivot_edge",
+      "chain_id": "database_access_after_saas_pivot",
+      "expected": "suppress",
+      "events": [
+        {
+          "platform": "okta",
+          "eventType": "user.mfa.factor.reset_all",
+          "published": "2026-04-08T10:00:00.000Z",
+          "actor": { "id": "00u-admin-032", "type": "User", "alternateId": "admin-032@example.com", "displayName": "Lab Admin 032" },
+          "client": { "ipAddress": "198.51.100.101", "zone": "untrusted", "device": "Computer", "userAgent": { "rawUserAgent": "Mozilla/5.0", "browser": "CHROME", "os": "Windows" } },
+          "outcome": { "result": "SUCCESS", "reason": null },
+          "target": [{ "id": "00u-privileged-002", "type": "User", "displayName": "privileged database owner" }],
+          "transaction": { "id": "txn-db-003" },
+          "authenticationContext": { "externalSessionId": "sid-db-003" }
+        },
+        {
+          "platform": "mongodb_atlas",
+          "created": "2026-04-08T10:30:00.000Z",
+          "eventTypeName": "NETWORK_PERMISSION_ENTRY_ADDED",
+          "groupId": "group-saas-lab",
+          "orgId": "org-saas-lab",
+          "clusterName": "cluster-lab-01",
+          "username": "db-admin-032@example.com",
+          "remoteAddress": "198.51.100.101",
+          "targetPublicIp": "0.0.0.0/0"
+        }
+      ]
+    }
+  ]
+}
+

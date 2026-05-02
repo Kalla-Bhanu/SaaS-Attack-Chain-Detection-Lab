@@ -1,0 +1,16 @@
+title: Okta MFA Policy Weakened
+id: okta_policy_mfa_weakened
+status: test
+description: Okta sign-on or MFA policy changed in a way that weakens authentication controls.
+logsource:
+  product: okta
+  service: system
+detection:
+  selection:
+    eventType: policy.rule.update
+    debugContext.debugData.change|contains: mfa_disabled
+  condition: selection
+falsepositives:
+  - Temporary lab policy change or approved staged rollout.
+level: high
+

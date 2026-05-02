@@ -1,0 +1,17 @@
+title: Google Workspace External Drive Share
+id: workspace_external_drive_share
+status: test
+description: Drive access change that shares modeled content externally.
+logsource:
+  product: google_workspace
+  service: reports
+detection:
+  selection:
+    applicationName: drive
+    events.name: change_user_access
+    events.parameters.value|contains: external
+  condition: selection
+falsepositives:
+  - Approved partner sharing.
+level: high
+

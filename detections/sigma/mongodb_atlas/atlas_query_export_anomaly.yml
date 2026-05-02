@@ -1,0 +1,16 @@
+title: MongoDB Atlas Query Export Anomaly
+id: atlas_query_export_anomaly
+status: test
+description: Modeled large query or export-like Atlas data access event.
+logsource:
+  product: mongodb_atlas
+  service: audit
+detection:
+  selection:
+    eventTypeName: DATA_EXPLORER_QUERY_EXECUTED
+    result.documentCount|gte: 5000
+  condition: selection
+falsepositives:
+  - Approved reporting query or data quality export.
+level: medium
+

@@ -1,0 +1,247 @@
+{
+  "project": "SaaS Attack Chain Detection Lab",
+  "version": "0.1.0",
+  "rules": [
+    {
+      "id": "okta_credential_failure_pressure",
+      "platform": "okta",
+      "detection_type": "volume_threshold",
+      "sigma": "detections/sigma/okta/okta_credential_failure_pressure.yml",
+      "description": "Multiple failed Okta authentication attempts for the same synthetic user inside a short window.",
+      "min_event_count": 5,
+      "conditions": [
+        { "path": "eventType", "equals": "user.authentication.failed" },
+        { "path": "outcome.result", "equals": "FAILURE" }
+      ]
+    },
+    {
+      "id": "okta_mfa_fatigue_pressure",
+      "platform": "okta",
+      "detection_type": "behavioral_pressure",
+      "sigma": "detections/sigma/okta/okta_mfa_fatigue_pressure.yml",
+      "description": "Repeated MFA challenge activity followed by approval pressure.",
+      "min_event_count": 3,
+      "conditions": [
+        { "path": "eventType", "equals": "user.authentication.auth_via_mfa" },
+        { "path": "outcome.result", "equals": "CHALLENGE" }
+      ]
+    },
+    {
+      "id": "okta_suspicious_session_start",
+      "platform": "okta",
+      "detection_type": "rare_context",
+      "sigma": "detections/sigma/okta/okta_suspicious_session_start.yml",
+      "description": "Successful Okta session from an untrusted zone or unfamiliar device context.",
+      "conditions": [
+        { "path": "eventType", "equals": "user.session.start" },
+        { "path": "outcome.result", "equals": "SUCCESS" },
+        { "path": "client.zone", "equals": "untrusted" }
+      ]
+    },
+    {
+      "id": "okta_suspicious_oauth_grant",
+      "platform": "okta",
+      "detection_type": "scope_expansion",
+      "sigma": "detections/sigma/okta/okta_suspicious_oauth_grant.yml",
+      "description": "OAuth application grant with broad or sensitive scopes.",
+      "conditions": [
+        { "path": "eventType", "equals": "application.oauth2.grant.consent" },
+        { "path": "debugContext.debugData.scopes", "contains": "drive.read" }
+      ]
+    },
+    {
+      "id": "okta_admin_role_grant",
+      "platform": "okta",
+      "detection_type": "privilege_change",
+      "sigma": "detections/sigma/okta/okta_admin_role_grant.yml",
+      "description": "Privileged role grant in Okta.",
+      "conditions": [
+        { "path": "eventType", "equals": "user.account.privilege.grant" },
+        { "path": "target[].displayName", "contains": "Administrator" }
+      ]
+    },
+    {
+      "id": "okta_policy_mfa_weakened",
+      "platform": "okta",
+      "detection_type": "control_weakening",
+      "sigma": "detections/sigma/okta/okta_policy_mfa_weakened.yml",
+      "description": "Sign-on or MFA policy weakened in Okta.",
+      "conditions": [
+        { "path": "eventType", "equals": "policy.rule.update" },
+        { "path": "debugContext.debugData.change", "contains": "mfa_disabled" }
+      ]
+    },
+    {
+      "id": "okta_service_account_token_use",
+      "platform": "okta",
+      "detection_type": "source_anomaly",
+      "sigma": "detections/sigma/okta/okta_service_account_token_use.yml",
+      "description": "Service or app account token activity from an untrusted source.",
+      "conditions": [
+        { "path": "eventType", "equals": "system.api_token.request" },
+        { "path": "actor.type", "equals": "ServiceAccount" },
+        { "path": "client.zone", "equals": "untrusted" }
+      ]
+    },
+    {
+      "id": "okta_recovery_factor_reset",
+      "platform": "okta",
+      "detection_type": "account_recovery_change",
+      "sigma": "detections/sigma/okta/okta_recovery_factor_reset.yml",
+      "description": "Recovery factor or authenticator reset for a privileged user.",
+      "conditions": [
+        { "path": "eventType", "equals": "user.mfa.factor.reset_all" },
+        { "path": "target[].displayName", "contains": "privileged" }
+      ]
+    },
+    {
+      "id": "workspace_oauth_scope_broad",
+      "platform": "google_workspace",
+      "detection_type": "scope_expansion",
+      "sigma": "detections/sigma/google_workspace/workspace_oauth_scope_broad.yml",
+      "description": "Google Workspace OAuth activity with broad Drive or Gmail scopes.",
+      "conditions": [
+        { "path": "events[].name", "equals": "authorize" },
+        { "path": "events[].parameters[].value", "contains": "drive.readonly" }
+      ]
+    },
+    {
+      "id": "workspace_drive_download_spike",
+      "platform": "google_workspace",
+      "detection_type": "volume_threshold",
+      "sigma": "detections/sigma/google_workspace/workspace_drive_download_spike.yml",
+      "description": "Multiple Google Drive download events by the same synthetic user.",
+      "min_event_count": 3,
+      "conditions": [
+        { "path": "applicationName", "equals": "drive" },
+        { "path": "events[].name", "equals": "download" }
+      ]
+    },
+    {
+      "id": "workspace_external_drive_share",
+      "platform": "google_workspace",
+      "detection_type": "external_sharing",
+      "sigma": "detections/sigma/google_workspace/workspace_external_drive_share.yml",
+      "description": "Drive file shared outside the modeled organization boundary.",
+      "conditions": [
+        { "path": "applicationName", "equals": "drive" },
+        { "path": "events[].name", "equals": "change_user_access" },
+        { "path": "events[].parameters[].value", "contains": "external" }
+      ]
+    },
+    {
+      "id": "workspace_gmail_forwarding_rule",
+      "platform": "google_workspace",
+      "detection_type": "persistence_path",
+      "sigma": "detections/sigma/google_workspace/workspace_gmail_forwarding_rule.yml",
+      "description": "Mailbox forwarding rule to an external address.",
+      "conditions": [
+        { "path": "applicationName", "equals": "gmail" },
+        { "path": "events[].name", "equals": "create_forwarding_rule" },
+        { "path": "events[].parameters[].value", "contains": "external" }
+      ]
+    },
+    {
+      "id": "workspace_admin_security_change",
+      "platform": "google_workspace",
+      "detection_type": "control_change",
+      "sigma": "detections/sigma/google_workspace/workspace_admin_security_change.yml",
+      "description": "Google Workspace administrative security setting change.",
+      "conditions": [
+        { "path": "applicationName", "equals": "admin" },
+        { "path": "events[].type", "equals": "SECURITY_SETTINGS" }
+      ]
+    },
+    {
+      "id": "atlas_network_access_expanded",
+      "platform": "mongodb_atlas",
+      "detection_type": "exposure_change",
+      "sigma": "detections/sigma/mongodb_atlas/atlas_network_access_expanded.yml",
+      "description": "MongoDB Atlas network access list expanded to a broad source.",
+      "conditions": [
+        { "path": "eventTypeName", "equals": "NETWORK_PERMISSION_ENTRY_ADDED" },
+        { "path": "targetPublicIp", "equals": "0.0.0.0/0" }
+      ]
+    },
+    {
+      "id": "atlas_database_user_privilege_change",
+      "platform": "mongodb_atlas",
+      "detection_type": "privilege_change",
+      "sigma": "detections/sigma/mongodb_atlas/atlas_database_user_privilege_change.yml",
+      "description": "MongoDB Atlas database user granted elevated role.",
+      "conditions": [
+        { "path": "eventTypeName", "equals": "DATABASE_USER_ROLES_CHANGED" },
+        { "path": "roles[].roleName", "contains": "readWriteAnyDatabase" }
+      ]
+    },
+    {
+      "id": "atlas_query_export_anomaly",
+      "platform": "mongodb_atlas",
+      "detection_type": "volume_threshold",
+      "sigma": "detections/sigma/mongodb_atlas/atlas_query_export_anomaly.yml",
+      "description": "Modeled large query or export-like database activity.",
+      "conditions": [
+        { "path": "eventTypeName", "equals": "DATA_EXPLORER_QUERY_EXECUTED" },
+        { "path": "result.documentCount", "gte": 5000 }
+      ]
+    }
+  ],
+  "chains": [
+    {
+      "id": "credential_stuffing_to_oauth_abuse",
+      "title": "Credential Stuffing To OAuth Abuse",
+      "required_rules": ["okta_credential_failure_pressure", "okta_suspicious_oauth_grant", "workspace_oauth_scope_broad"],
+      "min_layers": 2,
+      "window_minutes": 45
+    },
+    {
+      "id": "mfa_fatigue_to_admin_action",
+      "title": "MFA Fatigue To Admin Action",
+      "required_rules": ["okta_mfa_fatigue_pressure", "okta_admin_role_grant", "workspace_admin_security_change"],
+      "min_layers": 2,
+      "window_minutes": 30
+    },
+    {
+      "id": "suspicious_session_to_data_access",
+      "title": "Suspicious Session To Data Access",
+      "required_rules": ["okta_suspicious_session_start", "workspace_drive_download_spike", "atlas_query_export_anomaly"],
+      "min_layers": 2,
+      "window_minutes": 60
+    },
+    {
+      "id": "oauth_app_abuse_to_workspace_exfil",
+      "title": "OAuth App Abuse To Workspace Exfiltration",
+      "required_rules": ["okta_suspicious_oauth_grant", "workspace_oauth_scope_broad", "workspace_external_drive_share"],
+      "min_layers": 2,
+      "window_minutes": 60
+    },
+    {
+      "id": "admin_account_takeover",
+      "title": "Admin Account Takeover",
+      "required_rules": ["okta_admin_role_grant", "workspace_admin_security_change", "atlas_database_user_privilege_change"],
+      "min_layers": 2,
+      "window_minutes": 60
+    },
+    {
+      "id": "service_account_misuse",
+      "title": "Service Account Misuse",
+      "required_rules": ["okta_service_account_token_use", "workspace_oauth_scope_broad", "atlas_query_export_anomaly"],
+      "min_layers": 2,
+      "window_minutes": 60
+    },
+    {
+      "id": "policy_weakening_chain",
+      "title": "Policy Weakening Chain",
+      "required_rules": ["okta_policy_mfa_weakened", "workspace_admin_security_change", "workspace_external_drive_share"],
+      "min_layers": 2,
+      "window_minutes": 45
+    },
+    {
+      "id": "database_access_after_saas_pivot",
+      "title": "Database Access After SaaS Pivot",
+      "required_rules": ["okta_recovery_factor_reset", "workspace_drive_download_spike", "atlas_network_access_expanded"],
+      "min_layers": 2,
+      "window_minutes": 60
+    }
+  ]
+}

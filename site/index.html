@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SaaS Attack Chain Detection Lab</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <header class="page-header">
+        <p class="eyebrow">Identity to data access correlation</p>
+        <h1>SaaS Attack Chain Detection Lab</h1>
+        <p class="lede">Eight modeled attack chains connect Okta identity signals, Google Workspace data-plane activity, and MongoDB Atlas database-layer events.</p>
+      </header>
+
+      <section class="summary-grid" aria-label="Project summary">
+        <div>
+          <span class="metric">8</span>
+          <span class="label">attack chains</span>
+        </div>
+        <div>
+          <span class="metric">16</span>
+          <span class="label">layer rules</span>
+        </div>
+        <div>
+          <span class="metric">24</span>
+          <span class="label">validation cases</span>
+        </div>
+        <div>
+          <span class="metric">5</span>
+          <span class="label">self-tests</span>
+        </div>
+      </section>
+
+      <section class="layers" aria-label="Telemetry layers">
+        <article>
+          <h2>Okta</h2>
+          <p>Identity pressure, MFA activity, OAuth grants, sessions, policy changes, and role grants.</p>
+        </article>
+        <article>
+          <h2>Google Workspace</h2>
+          <p>OAuth authorization, Drive access, external sharing, mailbox changes, and admin security actions.</p>
+        </article>
+        <article>
+          <h2>MongoDB Atlas</h2>
+          <p>Network exposure, database role changes, and modeled query or export-like database activity.</p>
+        </article>
+      </section>
+
+      <section class="thesis-strip" aria-label="Correlation thesis">
+        <div>
+          <span>4</span>
+          <p>chains span Okta, Workspace, and Atlas.</p>
+        </div>
+        <div>
+          <span>4</span>
+          <p>chains stop at Okta and Workspace when Atlas would be unrelated.</p>
+        </div>
+        <div>
+          <span>8 + 1</span>
+          <p>sanitized evidence captures plus one documented Workspace privilege boundary.</p>
+        </div>
+      </section>
+
+      <section class="chain-map" aria-label="Attack chain coverage map">
+        <h2>Attack Chain Coverage Map</h2>
+        <div class="chain-row">
+          <span>Credential stuffing to OAuth abuse</span>
+          <strong>Okta -> Workspace</strong>
+          <em>validated</em>
+        </div>
+        <div class="chain-row">
+          <span>MFA fatigue to admin action</span>
+          <strong>Okta -> Workspace</strong>
+          <em>validated</em>
+        </div>
+        <div class="chain-row">
+          <span>Suspicious session to data access</span>
+          <strong>Okta -> Workspace -> Atlas</strong>
+          <em>validated</em>
+        </div>
+        <div class="chain-row">
+          <span>OAuth app abuse to Workspace exfiltration</span>
+          <strong>Okta -> Workspace</strong>
+          <em>validated</em>
+        </div>
+        <div class="chain-row">
+          <span>Admin account takeover</span>
+          <strong>Okta -> Workspace -> Atlas</strong>
+          <em>validated</em>
+        </div>
+        <div class="chain-row">
+          <span>Service account misuse</span>
+          <strong>Okta -> Workspace -> Atlas</strong>
+          <em>validated</em>
+        </div>
+        <div class="chain-row">
+          <span>Policy weakening chain</span>
+          <strong>Okta -> Workspace</strong>
+          <em>validated</em>
+        </div>
+        <div class="chain-row">
+          <span>Database access after SaaS pivot</span>
+          <strong>Okta -> Workspace -> Atlas</strong>
+          <em>validated</em>
+        </div>
+        <p class="boundary-note">The map only includes Atlas where database-layer activity materially changes the finding.</p>
+      </section>
+    </main>
+  </body>
+</html>

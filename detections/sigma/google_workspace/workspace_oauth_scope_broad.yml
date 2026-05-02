@@ -1,0 +1,16 @@
+title: Google Workspace Broad OAuth Scope
+id: workspace_oauth_scope_broad
+status: test
+description: Google Workspace OAuth authorization with broad Drive access scope.
+logsource:
+  product: google_workspace
+  service: reports
+detection:
+  selection:
+    events.name: authorize
+    events.parameters.value|contains: drive.readonly
+  condition: selection
+falsepositives:
+  - Approved first-party app enrollment.
+level: high
+

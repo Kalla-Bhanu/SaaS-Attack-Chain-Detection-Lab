@@ -1,0 +1,16 @@
+title: Okta Suspicious OAuth Grant
+id: okta_suspicious_oauth_grant
+status: test
+description: OAuth grant with broad Drive-related scope pressure.
+logsource:
+  product: okta
+  service: system
+detection:
+  selection:
+    eventType: application.oauth2.grant.consent
+    debugContext.debugData.scopes|contains: drive.read
+  condition: selection
+falsepositives:
+  - First-time use of a legitimate approved application.
+level: high
+

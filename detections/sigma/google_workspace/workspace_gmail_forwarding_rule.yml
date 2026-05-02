@@ -1,0 +1,17 @@
+title: Google Workspace Gmail Forwarding Rule
+id: workspace_gmail_forwarding_rule
+status: test
+description: Mailbox forwarding rule that routes messages externally.
+logsource:
+  product: google_workspace
+  service: reports
+detection:
+  selection:
+    applicationName: gmail
+    events.name: create_forwarding_rule
+    events.parameters.value|contains: external
+  condition: selection
+falsepositives:
+  - Approved mailbox migration rule.
+level: high
+

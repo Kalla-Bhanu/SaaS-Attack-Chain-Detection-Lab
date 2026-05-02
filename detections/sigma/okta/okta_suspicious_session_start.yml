@@ -1,0 +1,17 @@
+title: Okta Suspicious Session Start
+id: okta_suspicious_session_start
+status: test
+description: Successful session from an untrusted zone or unfamiliar access context.
+logsource:
+  product: okta
+  service: system
+detection:
+  selection:
+    eventType: user.session.start
+    outcome.result: SUCCESS
+    client.zone: untrusted
+  condition: selection
+falsepositives:
+  - Travel, VPN use, or a newly enrolled device.
+level: medium
+
