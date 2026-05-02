@@ -8,105 +8,342 @@
   </head>
   <body>
     <main>
-      <header class="page-header">
-        <p class="eyebrow">Identity to data access correlation</p>
-        <h1>SaaS Attack Chain Detection Lab</h1>
-        <p class="lede">Eight modeled attack chains connect Okta identity signals, Google Workspace data-plane activity, and MongoDB Atlas database-layer events.</p>
+      <header class="masthead" aria-label="Project overview">
+        <div class="wrap">
+          <p class="kicker">Public-safe security research dashboard</p>
+          <div class="masthead-grid">
+            <div class="masthead-copy">
+              <h1>SaaS Attack Chain Detection Lab</h1>
+              <p class="lede">A static correlation map for modeled SaaS compromise paths across Okta identity activity, Google Workspace data access, and MongoDB Atlas database-layer events.</p>
+            </div>
+            <dl class="manifest" aria-label="Lab manifest">
+              <div>
+                <dt>Attack chains</dt>
+                <dd>8</dd>
+              </div>
+              <div>
+                <dt>Layer rules</dt>
+                <dd>16</dd>
+              </div>
+              <div>
+                <dt>Validation cases</dt>
+                <dd>24</dd>
+              </div>
+              <div>
+                <dt>Self-tests</dt>
+                <dd>5</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
       </header>
 
-      <section class="summary-grid" aria-label="Project summary">
-        <div>
-          <span class="metric">8</span>
-          <span class="label">attack chains</span>
-        </div>
-        <div>
-          <span class="metric">16</span>
-          <span class="label">layer rules</span>
-        </div>
-        <div>
-          <span class="metric">24</span>
-          <span class="label">validation cases</span>
-        </div>
-        <div>
-          <span class="metric">5</span>
-          <span class="label">self-tests</span>
+      <section class="band band-map" aria-labelledby="chain-map-title">
+        <div class="wrap">
+          <div class="section-heading">
+            <p class="section-label">Correlation field</p>
+            <h2 id="chain-map-title">Eight chains across three telemetry layers</h2>
+            <p>Four chains span Okta, Workspace, and Atlas. Four stop at Okta and Workspace when database-layer activity would not materially change the finding.</p>
+          </div>
+
+          <figure class="chain-figure">
+            <svg class="chain-svg" viewBox="0 0 1180 420" role="img" aria-labelledby="chain-title chain-desc">
+              <title id="chain-title">Layered SaaS attack-chain map</title>
+              <desc id="chain-desc">The map shows eight chains. C3, C5, C6, and C8 reach MongoDB Atlas. C1, C2, C4, and C7 stop at Google Workspace.</desc>
+              <line class="axis axis-id" x1="118" y1="94" x2="1116" y2="94"></line>
+              <line class="axis axis-ws" x1="118" y1="210" x2="1116" y2="210"></line>
+              <line class="axis axis-atlas" x1="118" y1="326" x2="1116" y2="326"></line>
+              <text class="layer-text identity-text" x="24" y="99">Identity</text>
+              <text class="layer-text workspace-text" x="24" y="215">SaaS data</text>
+              <text class="layer-text atlas-text" x="24" y="331">Cloud DB</text>
+
+              <g class="chain-col chain-two">
+                <line class="thread identity-thread" x1="170" y1="94" x2="170" y2="210"></line>
+                <circle class="dot identity-dot" cx="170" cy="94" r="8"></circle>
+                <circle class="dot workspace-dot" cx="170" cy="210" r="8"></circle>
+                <text class="chain-code" x="170" y="52">C1</text>
+              </g>
+              <g class="chain-col chain-two">
+                <line class="thread identity-thread" x1="290" y1="94" x2="290" y2="210"></line>
+                <circle class="dot identity-dot" cx="290" cy="94" r="8"></circle>
+                <circle class="dot workspace-dot" cx="290" cy="210" r="8"></circle>
+                <text class="chain-code" x="290" y="52">C2</text>
+              </g>
+              <g class="chain-col chain-three">
+                <line class="thread identity-thread" x1="410" y1="94" x2="410" y2="210"></line>
+                <line class="thread atlas-thread" x1="410" y1="210" x2="410" y2="326"></line>
+                <circle class="dot identity-dot" cx="410" cy="94" r="8"></circle>
+                <circle class="dot workspace-dot" cx="410" cy="210" r="8"></circle>
+                <circle class="dot atlas-dot" cx="410" cy="326" r="8"></circle>
+                <text class="chain-code" x="410" y="52">C3</text>
+              </g>
+              <g class="chain-col chain-two">
+                <line class="thread identity-thread" x1="530" y1="94" x2="530" y2="210"></line>
+                <circle class="dot identity-dot" cx="530" cy="94" r="8"></circle>
+                <circle class="dot workspace-dot" cx="530" cy="210" r="8"></circle>
+                <text class="chain-code" x="530" y="52">C4</text>
+              </g>
+              <g class="chain-col chain-three">
+                <line class="thread identity-thread" x1="650" y1="94" x2="650" y2="210"></line>
+                <line class="thread atlas-thread" x1="650" y1="210" x2="650" y2="326"></line>
+                <circle class="dot identity-dot" cx="650" cy="94" r="8"></circle>
+                <circle class="dot workspace-dot" cx="650" cy="210" r="8"></circle>
+                <circle class="dot atlas-dot" cx="650" cy="326" r="8"></circle>
+                <text class="chain-code" x="650" y="52">C5</text>
+              </g>
+              <g class="chain-col chain-three">
+                <line class="thread identity-thread" x1="770" y1="94" x2="770" y2="210"></line>
+                <line class="thread atlas-thread" x1="770" y1="210" x2="770" y2="326"></line>
+                <circle class="dot identity-dot" cx="770" cy="94" r="8"></circle>
+                <circle class="dot workspace-dot" cx="770" cy="210" r="8"></circle>
+                <circle class="dot atlas-dot" cx="770" cy="326" r="8"></circle>
+                <text class="chain-code" x="770" y="52">C6</text>
+              </g>
+              <g class="chain-col chain-two">
+                <line class="thread identity-thread" x1="890" y1="94" x2="890" y2="210"></line>
+                <circle class="dot identity-dot" cx="890" cy="94" r="8"></circle>
+                <circle class="dot workspace-dot" cx="890" cy="210" r="8"></circle>
+                <text class="chain-code" x="890" y="52">C7</text>
+              </g>
+              <g class="chain-col chain-three">
+                <line class="thread identity-thread" x1="1010" y1="94" x2="1010" y2="210"></line>
+                <line class="thread atlas-thread" x1="1010" y1="210" x2="1010" y2="326"></line>
+                <circle class="dot identity-dot" cx="1010" cy="94" r="8"></circle>
+                <circle class="dot workspace-dot" cx="1010" cy="210" r="8"></circle>
+                <circle class="dot atlas-dot" cx="1010" cy="326" r="8"></circle>
+                <text class="chain-code" x="1010" y="52">C8</text>
+              </g>
+            </svg>
+            <figcaption>Atlas appears only where database-layer activity materially changes the finding.</figcaption>
+          </figure>
+
+          <div class="chain-index" aria-label="Attack chain coverage map">
+            <article>
+              <span>C1</span>
+              <h3>Credential stuffing to OAuth abuse</h3>
+              <p>Okta -> Workspace</p>
+            </article>
+            <article>
+              <span>C2</span>
+              <h3>MFA fatigue to admin action</h3>
+              <p>Okta -> Workspace</p>
+            </article>
+            <article>
+              <span>C3</span>
+              <h3>Suspicious session to data access</h3>
+              <p>Okta -> Workspace -> Atlas</p>
+            </article>
+            <article>
+              <span>C4</span>
+              <h3>OAuth app abuse to Workspace exfiltration</h3>
+              <p>Okta -> Workspace</p>
+            </article>
+            <article>
+              <span>C5</span>
+              <h3>Admin account takeover</h3>
+              <p>Okta -> Workspace -> Atlas</p>
+            </article>
+            <article>
+              <span>C6</span>
+              <h3>Service account misuse</h3>
+              <p>Okta -> Workspace -> Atlas</p>
+            </article>
+            <article>
+              <span>C7</span>
+              <h3>Policy weakening chain</h3>
+              <p>Okta -> Workspace</p>
+            </article>
+            <article>
+              <span>C8</span>
+              <h3>Database access after SaaS pivot</h3>
+              <p>Okta -> Workspace -> Atlas</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="layers" aria-label="Telemetry layers">
-        <article>
-          <h2>Okta</h2>
-          <p>Identity pressure, MFA activity, OAuth grants, sessions, policy changes, and role grants.</p>
-        </article>
-        <article>
-          <h2>Google Workspace</h2>
-          <p>OAuth authorization, Drive access, external sharing, mailbox changes, and admin security actions.</p>
-        </article>
-        <article>
-          <h2>MongoDB Atlas</h2>
-          <p>Network exposure, database role changes, and modeled query or export-like database activity.</p>
-        </article>
+      <section class="band" aria-labelledby="layer-title">
+        <div class="wrap">
+          <div class="section-heading compact">
+            <p class="section-label">Telemetry weighting</p>
+            <h2 id="layer-title">Signals start at identity and narrow through downstream evidence</h2>
+          </div>
+
+          <div class="layer-grid">
+            <article class="layer-card identity-card">
+              <span class="layer-mark"></span>
+              <h3>Okta</h3>
+              <p>Identity pressure, MFA challenge behavior, suspicious sessions, OAuth grants, policy changes, service account activity, and administrative role grants.</p>
+              <div class="rule-weight" aria-label="Eight Okta rules">
+                <span style="width: 50%"></span>
+              </div>
+              <strong>8 rules</strong>
+            </article>
+            <article class="layer-card workspace-card">
+              <span class="layer-mark"></span>
+              <h3>Google Workspace</h3>
+              <p>OAuth authorization, Drive downloads, external sharing, mailbox persistence, and administrative security changes.</p>
+              <div class="rule-weight" aria-label="Five Google Workspace rules">
+                <span style="width: 31.25%"></span>
+              </div>
+              <strong>5 rules</strong>
+            </article>
+            <article class="layer-card atlas-card">
+              <span class="layer-mark"></span>
+              <h3>MongoDB Atlas</h3>
+              <p>Network exposure, database user privilege changes, and modeled query or export-like database activity.</p>
+              <div class="rule-weight" aria-label="Three MongoDB Atlas rules">
+                <span style="width: 18.75%"></span>
+              </div>
+              <strong>3 rules</strong>
+            </article>
+          </div>
+        </div>
       </section>
 
-      <section class="thesis-strip" aria-label="Correlation thesis">
-        <div>
-          <span>4</span>
-          <p>chains span Okta, Workspace, and Atlas.</p>
-        </div>
-        <div>
-          <span>4</span>
-          <p>chains stop at Okta and Workspace when Atlas would be unrelated.</p>
-        </div>
-        <div>
-          <span>8 + 1</span>
-          <p>sanitized evidence captures plus one documented Workspace privilege boundary.</p>
+      <section class="band band-coverage" aria-labelledby="coverage-title">
+        <div class="wrap">
+          <div class="section-heading">
+            <p class="section-label">Rule coverage</p>
+            <h2 id="coverage-title">Sixteen layer rules with conservative boundaries</h2>
+            <p>Identity carries the primary weight. Workspace extends the finding into SaaS data activity. Atlas supports chains where database-layer context changes the result.</p>
+          </div>
+
+          <div class="coverage-table" role="table" aria-label="Detection coverage matrix">
+            <div class="coverage-row coverage-head" role="row">
+              <span role="columnheader">Rule</span>
+              <span role="columnheader">Layer</span>
+              <span role="columnheader">Pattern</span>
+              <span role="columnheader">Validation</span>
+            </div>
+            <div class="coverage-group">Okta identity</div>
+            <div class="coverage-row" role="row"><span role="cell">Credential failure pressure</span><span role="cell">Okta</span><span role="cell">Volume threshold</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">MFA fatigue pressure</span><span role="cell">Okta</span><span role="cell">Behavioral pressure</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">Suspicious session start</span><span role="cell">Okta</span><span role="cell">Rare context</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">Suspicious OAuth grant</span><span role="cell">Okta</span><span role="cell">Scope expansion</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">Admin role grant</span><span role="cell">Okta</span><span role="cell">Privilege change</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">MFA policy weakened</span><span role="cell">Okta</span><span role="cell">Control weakening</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">Service account token use</span><span role="cell">Okta</span><span role="cell">Source anomaly</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">Recovery factor reset</span><span role="cell">Okta</span><span role="cell">Account recovery change</span><span role="cell">Pass</span></div>
+            <div class="coverage-group">Google Workspace data plane</div>
+            <div class="coverage-row" role="row"><span role="cell">Broad OAuth scope</span><span role="cell">Workspace</span><span role="cell">Scope expansion</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">Drive download spike</span><span role="cell">Workspace</span><span role="cell">Volume threshold</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">External Drive share</span><span role="cell">Workspace</span><span role="cell">External sharing</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">Gmail forwarding rule</span><span role="cell">Workspace</span><span role="cell">Persistence path</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">Admin security change</span><span role="cell">Workspace</span><span role="cell">Control change</span><span role="cell">Pass</span></div>
+            <div class="coverage-group">MongoDB Atlas database layer</div>
+            <div class="coverage-row" role="row"><span role="cell">Network access expanded</span><span role="cell">Atlas</span><span role="cell">Exposure change</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">Database user privilege change</span><span role="cell">Atlas</span><span role="cell">Privilege change</span><span role="cell">Pass</span></div>
+            <div class="coverage-row" role="row"><span role="cell">Query export anomaly</span><span role="cell">Atlas</span><span role="cell">Volume threshold</span><span role="cell">Pass</span></div>
+          </div>
         </div>
       </section>
 
-      <section class="chain-map" aria-label="Attack chain coverage map">
-        <h2>Attack Chain Coverage Map</h2>
-        <div class="chain-row">
-          <span>Credential stuffing to OAuth abuse</span>
-          <strong>Okta -> Workspace</strong>
-          <em>validated</em>
+      <section class="band" aria-labelledby="evidence-title">
+        <div class="wrap">
+          <div class="section-heading">
+            <p class="section-label">Evidence catalog</p>
+            <h2 id="evidence-title">Eight captured surfaces and one documented Workspace privilege boundary</h2>
+            <p>Every screenshot is sanitized for public release. The Workspace audit report boundary is shown alongside the captured surfaces instead of being hidden in a footnote.</p>
+          </div>
+
+          <div class="evidence-grid">
+            <article class="evidence-card">
+              <img src="assets/evidence/okta-system-log-explorer-sanitized.png" alt="Sanitized Okta System Log Explorer surface" loading="lazy">
+              <p class="evidence-label">Evidence 01</p>
+              <h3>Okta System Log Explorer</h3>
+              <p>Event-type structure and investigative fields with tenant and identity values redacted.</p>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/evidence/okta-policy-surfaces-sanitized.png" alt="Sanitized Okta policy configuration surface" loading="lazy">
+              <p class="evidence-label">Evidence 02</p>
+              <h3>Okta policy surfaces</h3>
+              <p>Control configuration surfaces used to reason about authentication and policy changes.</p>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/evidence/okta-app-oauth-surface-sanitized.png" alt="Sanitized Okta OAuth application surface" loading="lazy">
+              <p class="evidence-label">Evidence 03</p>
+              <h3>Okta OAuth application surface</h3>
+              <p>Application and OAuth management context with sensitive values hidden.</p>
+            </article>
+            <article class="evidence-card blocker">
+              <img src="assets/evidence/workspace-audit-log-sanitized.png" alt="Sanitized Google Workspace audit report access boundary" loading="lazy">
+              <p class="evidence-label">Evidence 04 - blocked</p>
+              <h3>Workspace audit report boundary</h3>
+              <p>The lab account reached Google Admin but lacked the reporting privilege required for the Admin audit report.</p>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/evidence/workspace-oauth-app-access-sanitized.png" alt="Sanitized Google Workspace OAuth app access controls" loading="lazy">
+              <p class="evidence-label">Evidence 05</p>
+              <h3>Workspace OAuth app access</h3>
+              <p>App access controls used to model broad authorization and scope expansion.</p>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/evidence/workspace-drive-sharing-controls-sanitized.png" alt="Sanitized Google Workspace Drive sharing controls" loading="lazy">
+              <p class="evidence-label">Evidence 06</p>
+              <h3>Workspace Drive sharing controls</h3>
+              <p>Sharing controls that frame the external Drive exposure chains.</p>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/evidence/atlas-activity-feed-sanitized.png" alt="Sanitized MongoDB Atlas activity feed" loading="lazy">
+              <p class="evidence-label">Evidence 07</p>
+              <h3>Atlas activity feed</h3>
+              <p>Database-layer activity surface with organization and project identifiers removed.</p>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/evidence/atlas-network-access-sanitized.png" alt="Sanitized MongoDB Atlas network access controls" loading="lazy">
+              <p class="evidence-label">Evidence 08</p>
+              <h3>Atlas network access</h3>
+              <p>Network exposure control surface used for downstream database access modeling.</p>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/evidence/atlas-database-users-sanitized.png" alt="Sanitized MongoDB Atlas database users surface" loading="lazy">
+              <p class="evidence-label">Evidence 09</p>
+              <h3>Atlas database users</h3>
+              <p>Database access controls with usernames and account-specific details removed.</p>
+            </article>
+          </div>
         </div>
-        <div class="chain-row">
-          <span>MFA fatigue to admin action</span>
-          <strong>Okta -> Workspace</strong>
-          <em>validated</em>
-        </div>
-        <div class="chain-row">
-          <span>Suspicious session to data access</span>
-          <strong>Okta -> Workspace -> Atlas</strong>
-          <em>validated</em>
-        </div>
-        <div class="chain-row">
-          <span>OAuth app abuse to Workspace exfiltration</span>
-          <strong>Okta -> Workspace</strong>
-          <em>validated</em>
-        </div>
-        <div class="chain-row">
-          <span>Admin account takeover</span>
-          <strong>Okta -> Workspace -> Atlas</strong>
-          <em>validated</em>
-        </div>
-        <div class="chain-row">
-          <span>Service account misuse</span>
-          <strong>Okta -> Workspace -> Atlas</strong>
-          <em>validated</em>
-        </div>
-        <div class="chain-row">
-          <span>Policy weakening chain</span>
-          <strong>Okta -> Workspace</strong>
-          <em>validated</em>
-        </div>
-        <div class="chain-row">
-          <span>Database access after SaaS pivot</span>
-          <strong>Okta -> Workspace -> Atlas</strong>
-          <em>validated</em>
-        </div>
-        <p class="boundary-note">The map only includes Atlas where database-layer activity materially changes the finding.</p>
       </section>
+
+      <section class="band band-validation" aria-labelledby="validation-title">
+        <div class="wrap validation-layout">
+          <div>
+            <p class="section-label">Validation</p>
+            <h2 id="validation-title">Small harness, explicit outcomes</h2>
+            <p>The repository evaluates Sigma-style rules against labeled positive, negative, and edge cases. Correlation is documented as auditable chain logic rather than a live SIEM claim.</p>
+          </div>
+          <pre aria-label="Verification summary"><code>$ npm run verify:all
+structure verification        pass
+catalog quality               pass
+rule validation               24 / 24
+release manifest              pass
+evidence catalog              pass
+static site                   pass
+public-safe scan              pass</code></pre>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="wrap footer-grid">
+          <div>
+            <h2>Boundaries</h2>
+            <p>Attack chains, events, and validation results are synthetic lab material. Sanitized screenshots preserve service-surface evidence without exposing private tenant data.</p>
+          </div>
+          <div>
+            <h2>Reference</h2>
+            <a href="https://github.com/Kalla-Bhanu/SaaS-Attack-Chain-Detection-Lab">Repository</a>
+            <a href="https://github.com/Kalla-Bhanu/SaaS-Attack-Chain-Detection-Lab/blob/main/docs/coverage-and-gaps.md">Coverage and gaps</a>
+            <a href="https://github.com/Kalla-Bhanu/SaaS-Attack-Chain-Detection-Lab/blob/main/docs/lab-modeling-disclosure.md">Lab disclosure</a>
+            <a href="https://github.com/Kalla-Bhanu/SaaS-Attack-Chain-Detection-Lab/blob/main/evidence/catalog.json">Evidence catalog</a>
+          </div>
+          <div>
+            <h2>Companion labs</h2>
+            <a href="https://github.com/Kalla-Bhanu/CloudSec-SOC-Detection-Lab">CloudSec SOC Detection Lab</a>
+            <a href="https://github.com/Kalla-Bhanu/Datadog-Detection-Engineering-Lab">Datadog Detection Engineering Lab</a>
+          </div>
+        </div>
+      </footer>
     </main>
   </body>
 </html>
