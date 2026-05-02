@@ -188,8 +188,8 @@ function runSelfTests() {
   });
 
   checks.push({
-    id: "detect_privacy_scan_dependency",
-    passed: fs.existsSync(path.join(process.cwd(), "tools", "verify-public-safe.mjs"))
+    id: "detect_public_release_scan_dependency",
+    passed: fs.existsSync(path.join(process.cwd(), "tools", "verify-public-release.mjs"))
   });
 
   return checks;

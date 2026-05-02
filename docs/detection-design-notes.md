@@ -6,7 +6,7 @@ The detections are designed as small layer signals that compose into attack chai
 
 Each chain requires all listed rule signals inside a defined time window. The validation harness evaluates the layer rules first, then evaluates whether the chain-level correlation should fire.
 
-The harness is intentionally small. It demonstrates the correlation pattern against public-safe event bundles without claiming to be a SIEM, alert queue, or managed analytics platform.
+The harness is intentionally small. It checks the correlation pattern against sanitized event bundles without claiming to be a SIEM, alert queue, or managed analytics platform.
 
 The harness answers one narrow question: given a known event bundle, did the expected layer signals appear close enough together to form the modeled chain? It does not score severity, deduplicate incidents, run enrichment jobs, manage alert ownership, or estimate real-world false-positive rates.
 
@@ -20,7 +20,7 @@ The harness answers one narrow question: given a known event bundle, did the exp
 
 ## Rule Pattern Types
 
-The catalog labels each rule by detection pattern so the project can be reviewed for engineering variety. The patterns include threshold-based activity, behavioral pressure, rare context, scope expansion, privilege changes, control weakening, source anomalies, account recovery changes, sharing changes, persistence paths, and database exposure changes.
+The catalog labels each rule by detection pattern so the rule set can be checked for variety. The patterns include threshold-based activity, behavioral pressure, rare context, scope expansion, privilege changes, control weakening, source anomalies, account recovery changes, sharing changes, persistence paths, and database exposure changes.
 
 ## Chain And Rule Boundary
 

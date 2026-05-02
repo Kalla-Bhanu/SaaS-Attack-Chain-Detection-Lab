@@ -16,7 +16,6 @@ The verification path checks:
 - Release manifest counts.
 - Evidence catalog structure.
 - Static site content.
-- Public-safe wording and identifier hygiene.
+- Public-release wording and identifier hygiene.
 
 The checks do not require live Okta, Google Workspace, or MongoDB Atlas services.
-

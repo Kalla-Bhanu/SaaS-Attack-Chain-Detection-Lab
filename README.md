@@ -6,16 +6,16 @@ This lab models detection design across a SaaS attack chain: identity activity i
 
 The core question is simple: what changes when an identity signal is joined with downstream SaaS data access and database-layer activity? The lab answers that with eight attack chains, Sigma-style layer rules, synthetic event bundles, a local validation harness, conservative coverage boundaries, and a static coverage map.
 
-This is not a post-compromise AWS investigation narrative and not a single-vendor monitor-as-code exercise. In the portfolio, this sits between those two styles: [CloudSec SOC Detection Lab](https://github.com/Kalla-Bhanu/CloudSec-SOC-Detection-Lab) is the AWS investigation case file, [Datadog Detection Engineering Lab](https://github.com/Kalla-Bhanu/Datadog-Detection-Engineering-Lab) is the monitor lifecycle lab, and this repo is the SaaS perimeter correlation lab. The focus here is how identity, collaboration, and database-layer signals combine into higher-confidence attack-chain findings before a cloud incident becomes obvious downstream.
+This is not a post-compromise AWS investigation narrative and not a single-vendor monitor-as-code exercise. The scope is narrower: identity, collaboration, and database-layer signals are joined into higher-confidence attack-chain findings before a cloud incident becomes obvious downstream.
 
-## What This Project Shows
+## Project Contents
 
 - Eight SaaS attack chains across identity, collaboration, and database layers.
 - Sixteen Sigma-style rules grouped by Okta, Google Workspace, and MongoDB Atlas, with explicit detection-pattern labels.
 - Twenty-four validation bundles: positive, negative, and edge cases for every chain.
 - A local correlation harness with five intentional failure self-tests.
 - A static attack-chain coverage map that works without live paid services.
-- A public-safe evidence catalog with sanitized service screenshots and a documented Workspace audit-report privilege boundary.
+- A sanitized evidence catalog with service screenshots and a documented Workspace audit-report privilege boundary.
 
 ## Quick Links
 
@@ -47,7 +47,7 @@ This is not a post-compromise AWS investigation narrative and not a single-vendo
 attack-chains/       Per-chain detection rationale and boundaries
 detections/          Detection catalog and Sigma-style rules
 events/              Synthetic Okta, Workspace, and Atlas event bundles
-validation/          Generated validation result artifact
+validation/          Validation result artifact
 docs/                Threat model, coverage, reproducibility, and disclosure notes
 evidence/            Sanitized evidence index and captured artifacts
 site/                Static attack-chain coverage map
@@ -60,8 +60,8 @@ tools/               Local verification scripts
 npm run verify:all
 ```
 
-The full verification path checks repository structure, catalog quality, event schemas, layer rules, chain correlation, harness self-tests, release manifest counts, evidence catalog shape, static site content, and public-safe wording.
+The full verification path checks repository structure, catalog quality, event schemas, layer rules, chain correlation, harness self-tests, release manifest counts, evidence catalog shape, static site content, and public-release wording.
 
-## Public-Safe Boundary
+## Public Boundary
 
 This project must not include private tenant names, real user data, real emails, account IDs, API keys, tokens, account subscription pages, raw service exports, or production-operation claims.

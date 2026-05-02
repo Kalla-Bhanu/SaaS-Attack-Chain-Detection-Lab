@@ -16,7 +16,7 @@
     "real": [
       "Detection design",
       "Local validation harness",
-      "Public-safe verification",
+      "Public release verification",
       "Sanitized service-surface evidence",
       "Documented service privilege boundaries"
     ],

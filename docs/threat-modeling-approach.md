@@ -18,7 +18,7 @@ Four chains span all three services. Four chains stop at Okta and Google Workspa
 - Require cross-layer correlation before calling a case high confidence.
 - Treat single-layer alerts as useful but incomplete.
 - Name false-positive paths instead of hiding them.
-- Preserve clear boundaries between lab-modeled data and live operations.
+- Preserve clear boundaries between modeled data and live operations.
 - Do not add a layer to a chain only to make the diagram look broader.
 
 ## Threat Patterns Modeled

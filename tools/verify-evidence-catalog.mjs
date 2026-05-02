@@ -17,7 +17,7 @@ const statusCounts = new Map();
 const ids = new Set();
 
 for (const item of catalog.evidence) {
-  if (!item.id || !item.platform || !item.status || !item.file || !item.public_safe_note || !item.captured_at) {
+  if (!item.id || !item.platform || !item.status || !item.file || !item.sanitization_note || !item.captured_at) {
     console.error(`Evidence catalog entry is incomplete: ${JSON.stringify(item)}`);
     process.exit(1);
   }

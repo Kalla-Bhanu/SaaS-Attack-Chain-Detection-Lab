@@ -2,16 +2,16 @@
   "name": "saas-attack-chain-detection-lab",
   "version": "0.1.0",
   "private": true,
-  "description": "Public-safe SaaS attack chain detection lab across Okta, Google Workspace, and MongoDB Atlas.",
+  "description": "Sanitized SaaS attack chain detection lab across Okta, Google Workspace, and MongoDB Atlas.",
   "scripts": {
-    "verify:all": "node tools/verify-structure.mjs && node tools/verify-catalog-quality.mjs && node tools/validate-lab.mjs && node tools/verify-release-manifest.mjs && node tools/verify-evidence-catalog.mjs && node tools/verify-site.mjs && node tools/verify-public-safe.mjs",
+    "verify:all": "node tools/verify-structure.mjs && node tools/verify-catalog-quality.mjs && node tools/validate-lab.mjs && node tools/verify-release-manifest.mjs && node tools/verify-evidence-catalog.mjs && node tools/verify-site.mjs && node tools/verify-public-release.mjs",
     "verify:structure": "node tools/verify-structure.mjs",
     "verify:catalog": "node tools/verify-catalog-quality.mjs",
     "validate": "node tools/validate-lab.mjs",
     "verify:manifest": "node tools/verify-release-manifest.mjs",
     "verify:evidence": "node tools/verify-evidence-catalog.mjs",
     "verify:site": "node tools/verify-site.mjs",
-    "verify:public-safe": "node tools/verify-public-safe.mjs"
+    "verify:public-release": "node tools/verify-public-release.mjs"
   },
   "keywords": [
     "security",

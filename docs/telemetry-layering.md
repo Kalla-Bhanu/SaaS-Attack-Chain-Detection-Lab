@@ -26,4 +26,4 @@ The rule catalog uses eight Okta rules, five Google Workspace rules, and three M
 - Google Workspace is the main SaaS data plane and appears in every chain.
 - MongoDB Atlas is the downstream database layer and appears only when database activity changes the finding.
 
-This keeps Atlas meaningful without turning the lab into a database monitoring project. If Atlas were forced into every chain, the model would look broader but the detections would be less honest.
+This keeps Atlas meaningful without turning the lab into a database monitoring project. If Atlas were forced into every chain, the coverage would look broader while the signal quality would drop.

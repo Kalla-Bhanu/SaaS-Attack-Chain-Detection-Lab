@@ -1,6 +1,6 @@
 # Lab Modeling Disclosure
 
-This repository is a public-safe lab. The attack chains, events, and validation results are synthetic and designed to model realistic telemetry relationships without exposing private service data.
+This repository is a sanitized lab. The attack chains, events, and validation results are synthetic and designed to model realistic telemetry relationships without exposing private service data.
 
 ## Real
 
@@ -10,9 +10,9 @@ This repository is a public-safe lab. The attack chains, events, and validation 
 - The local verification commands.
 - Sanitized service-surface evidence for eight Okta, Google Workspace, and MongoDB Atlas control surfaces.
 - The documented Google Workspace audit-report privilege boundary.
-- The public-safe release checks and evidence catalog checks.
+- The public-release checks and evidence catalog checks.
 
-## Lab-Modeled
+## Modeled Inputs
 
 - User identities.
 - Source addresses.

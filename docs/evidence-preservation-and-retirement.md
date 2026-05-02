@@ -1,6 +1,6 @@
 # Evidence Preservation And Service Retirement
 
-The repo is designed to survive after Okta, Google Workspace, and MongoDB Atlas lab services are retired. The reusable value is in the detection design, synthetic event bundles, validation harness, static coverage map, and public-safe evidence index.
+The repo is designed to survive after Okta, Google Workspace, and MongoDB Atlas lab services are retired. The reusable value is in the detection design, synthetic event bundles, validation harness, static coverage map, and sanitized evidence index.
 
 ## Capture Before Retirement
 

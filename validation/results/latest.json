@@ -499,7 +499,7 @@
       "passed": true
     },
     {
-      "id": "detect_privacy_scan_dependency",
+      "id": "detect_public_release_scan_dependency",
       "passed": true
     }
   ]
