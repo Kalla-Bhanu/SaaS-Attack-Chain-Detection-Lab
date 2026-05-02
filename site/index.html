@@ -250,75 +250,166 @@
 
           <div class="evidence-grid">
             <article class="evidence-card">
-              <img src="assets/evidence/okta-system-log-explorer-sanitized.png" alt="Sanitized Okta System Log Explorer surface" loading="lazy">
+              <figure class="evidence-visual okta-log">
+                <img class="evidence-crop" src="assets/evidence/okta-system-log-explorer-sanitized.png" alt="Sanitized Okta System Log Explorer detail" loading="lazy">
+                <figcaption>Sanitized screenshot detail</figcaption>
+                <div class="visual-summary"><span>Okta</span><strong>System Log Explorer</strong><small>event detail and outcome fields</small></div>
+              </figure>
               <div class="evidence-copy">
                 <p class="evidence-label">Evidence 01</p>
                 <h3>Okta System Log Explorer</h3>
                 <p>Event-type structure and investigative fields with tenant and identity values redacted.</p>
+                <ul class="proof-points">
+                  <li><span>Surface</span>System Log event explorer</li>
+                  <li><span>Proof</span>Event trend, event detail, and outcome fields</li>
+                  <li><span>Use</span>Identity event normalization for chain starts</li>
+                </ul>
+                <a class="evidence-link" href="assets/evidence/okta-system-log-explorer-sanitized.png" target="_blank" rel="noopener">Open full sanitized screenshot</a>
               </div>
             </article>
             <article class="evidence-card">
-              <img src="assets/evidence/okta-policy-surfaces-sanitized.png" alt="Sanitized Okta policy configuration surface" loading="lazy">
+              <figure class="evidence-visual okta-policy">
+                <img class="evidence-crop" src="assets/evidence/okta-policy-surfaces-sanitized.png" alt="Sanitized Okta policy configuration detail" loading="lazy">
+                <figcaption>Sanitized screenshot detail</figcaption>
+                <div class="visual-summary"><span>Okta</span><strong>Global Session Policy</strong><small>policy assignment and default rule shape</small></div>
+              </figure>
               <div class="evidence-copy">
                 <p class="evidence-label">Evidence 02</p>
                 <h3>Okta policy surfaces</h3>
                 <p>Control configuration surfaces used to reason about authentication and policy changes.</p>
+                <ul class="proof-points">
+                  <li><span>Surface</span>Global session policy</li>
+                  <li><span>Proof</span>Policy ordering, assignment, and default rule shape</li>
+                  <li><span>Use</span>Policy weakening and MFA coverage logic</li>
+                </ul>
+                <a class="evidence-link" href="assets/evidence/okta-policy-surfaces-sanitized.png" target="_blank" rel="noopener">Open full sanitized screenshot</a>
               </div>
             </article>
             <article class="evidence-card">
-              <img src="assets/evidence/okta-app-oauth-surface-sanitized.png" alt="Sanitized Okta OAuth application surface" loading="lazy">
+              <figure class="evidence-visual okta-oauth">
+                <img class="evidence-crop" src="assets/evidence/okta-app-oauth-surface-sanitized.png" alt="Sanitized Okta OAuth application detail" loading="lazy">
+                <figcaption>Sanitized screenshot detail</figcaption>
+                <div class="visual-summary"><span>Okta</span><strong>OAuth Application Surface</strong><small>app status and assignment controls</small></div>
+              </figure>
               <div class="evidence-copy">
                 <p class="evidence-label">Evidence 03</p>
                 <h3>Okta OAuth application surface</h3>
                 <p>Application and OAuth management context with sensitive values hidden.</p>
+                <ul class="proof-points">
+                  <li><span>Surface</span>Application inventory and OAuth app controls</li>
+                  <li><span>Proof</span>App status, assignment, and plugin context</li>
+                  <li><span>Use</span>OAuth abuse and suspicious app correlation</li>
+                </ul>
+                <a class="evidence-link" href="assets/evidence/okta-app-oauth-surface-sanitized.png" target="_blank" rel="noopener">Open full sanitized screenshot</a>
               </div>
             </article>
             <article class="evidence-card blocker">
-              <img src="assets/evidence/workspace-audit-log-sanitized.png" alt="Sanitized Google Workspace audit report access boundary" loading="lazy">
+              <div class="evidence-boundary" role="img" aria-label="Google Workspace audit report access boundary">
+                <p>ACCESS <strong>blocked_by_privilege</strong></p>
+                <p>SCOPE <strong>workspace.audit.report</strong></p>
+                <p>RESULT <strong>no live export</strong></p>
+                <p>CONTENT <strong>modeled cases marked</strong></p>
+              </div>
               <div class="evidence-copy">
                 <p class="evidence-label">Evidence 04 - blocked</p>
                 <h3>Workspace audit report boundary</h3>
                 <p>The lab account reached Google Admin but lacked the reporting privilege required for the Admin audit report.</p>
+                <ul class="proof-points">
+                  <li><span>Surface</span>Google Admin report access boundary</li>
+                  <li><span>Proof</span>Privilege limitation documented instead of hidden</li>
+                  <li><span>Use</span>Workspace audit events kept as labeled modeled cases</li>
+                </ul>
+                <a class="evidence-link" href="assets/evidence/workspace-audit-log-sanitized.png" target="_blank" rel="noopener">Open full sanitized screenshot</a>
               </div>
             </article>
             <article class="evidence-card">
-              <img src="assets/evidence/workspace-oauth-app-access-sanitized.png" alt="Sanitized Google Workspace OAuth app access controls" loading="lazy">
+              <figure class="evidence-visual workspace-oauth">
+                <img class="evidence-crop" src="assets/evidence/workspace-oauth-app-access-sanitized.png" alt="Sanitized Google Workspace OAuth app access detail" loading="lazy">
+                <figcaption>Sanitized screenshot detail</figcaption>
+                <div class="visual-summary"><span>Workspace</span><strong>App Access Control</strong><small>service restriction and app review counters</small></div>
+              </figure>
               <div class="evidence-copy">
                 <p class="evidence-label">Evidence 05</p>
                 <h3>Workspace OAuth app access</h3>
                 <p>App access controls used to model broad authorization and scope expansion.</p>
+                <ul class="proof-points">
+                  <li><span>Surface</span>App access control overview</li>
+                  <li><span>Proof</span>Service restriction and app review counters</li>
+                  <li><span>Use</span>Third-party app authorization risk modeling</li>
+                </ul>
+                <a class="evidence-link" href="assets/evidence/workspace-oauth-app-access-sanitized.png" target="_blank" rel="noopener">Open full sanitized screenshot</a>
               </div>
             </article>
             <article class="evidence-card">
-              <img src="assets/evidence/workspace-drive-sharing-controls-sanitized.png" alt="Sanitized Google Workspace Drive sharing controls" loading="lazy">
+              <figure class="evidence-visual workspace-drive">
+                <img class="evidence-crop" src="assets/evidence/workspace-drive-sharing-controls-sanitized.png" alt="Sanitized Google Workspace Drive sharing detail" loading="lazy">
+                <figcaption>Sanitized screenshot detail</figcaption>
+                <div class="visual-summary"><span>Workspace</span><strong>Drive Sharing Controls</strong><small>external sharing and audit reference surface</small></div>
+              </figure>
               <div class="evidence-copy">
                 <p class="evidence-label">Evidence 06</p>
                 <h3>Workspace Drive sharing controls</h3>
                 <p>Sharing controls that frame the external Drive exposure chains.</p>
+                <ul class="proof-points">
+                  <li><span>Surface</span>Drive external sharing configuration</li>
+                  <li><span>Proof</span>Guest invitation and audit-log reference controls</li>
+                  <li><span>Use</span>External sharing exposure path context</li>
+                </ul>
+                <a class="evidence-link" href="assets/evidence/workspace-drive-sharing-controls-sanitized.png" target="_blank" rel="noopener">Open full sanitized screenshot</a>
               </div>
             </article>
             <article class="evidence-card">
-              <img src="assets/evidence/atlas-activity-feed-sanitized.png" alt="Sanitized MongoDB Atlas activity feed" loading="lazy">
+              <figure class="evidence-visual atlas-feed">
+                <img class="evidence-crop" src="assets/evidence/atlas-activity-feed-sanitized.png" alt="Sanitized MongoDB Atlas activity feed detail" loading="lazy">
+                <figcaption>Sanitized screenshot detail</figcaption>
+                <div class="visual-summary"><span>Atlas</span><strong>Activity Feed</strong><small>severity, category, initiator, and time fields</small></div>
+              </figure>
               <div class="evidence-copy">
                 <p class="evidence-label">Evidence 07</p>
                 <h3>Atlas activity feed</h3>
                 <p>Database-layer activity surface with organization and project identifiers removed.</p>
+                <ul class="proof-points">
+                  <li><span>Surface</span>Atlas activity feed</li>
+                  <li><span>Proof</span>Event severity, category, initiator, and time fields</li>
+                  <li><span>Use</span>Database activity after SaaS account pivot</li>
+                </ul>
+                <a class="evidence-link" href="assets/evidence/atlas-activity-feed-sanitized.png" target="_blank" rel="noopener">Open full sanitized screenshot</a>
               </div>
             </article>
             <article class="evidence-card">
-              <img src="assets/evidence/atlas-network-access-sanitized.png" alt="Sanitized MongoDB Atlas network access controls" loading="lazy">
+              <figure class="evidence-visual atlas-network">
+                <img class="evidence-crop" src="assets/evidence/atlas-network-access-sanitized.png" alt="Sanitized MongoDB Atlas network access detail" loading="lazy">
+                <figcaption>Sanitized screenshot detail</figcaption>
+                <div class="visual-summary"><span>Atlas</span><strong>Network Access List</strong><small>IP allowlist and current-address controls</small></div>
+              </figure>
               <div class="evidence-copy">
                 <p class="evidence-label">Evidence 08</p>
                 <h3>Atlas network access</h3>
                 <p>Network exposure control surface used for downstream database access modeling.</p>
+                <ul class="proof-points">
+                  <li><span>Surface</span>Network access list</li>
+                  <li><span>Proof</span>IP allowlist prompt and current-address control</li>
+                  <li><span>Use</span>Exposure change and database reachability logic</li>
+                </ul>
+                <a class="evidence-link" href="assets/evidence/atlas-network-access-sanitized.png" target="_blank" rel="noopener">Open full sanitized screenshot</a>
               </div>
             </article>
             <article class="evidence-card">
-              <img src="assets/evidence/atlas-database-users-sanitized.png" alt="Sanitized MongoDB Atlas database users surface" loading="lazy">
+              <figure class="evidence-visual atlas-users">
+                <img class="evidence-crop" src="assets/evidence/atlas-database-users-sanitized.png" alt="Sanitized MongoDB Atlas database users detail" loading="lazy">
+                <figcaption>Sanitized screenshot detail</figcaption>
+                <div class="visual-summary"><span>Atlas</span><strong>Database Users</strong><small>user creation, permission, and credential path</small></div>
+              </figure>
               <div class="evidence-copy">
                 <p class="evidence-label">Evidence 09</p>
                 <h3>Atlas database users</h3>
                 <p>Database access controls with usernames and account-specific details removed.</p>
+                <ul class="proof-points">
+                  <li><span>Surface</span>Database user administration</li>
+                  <li><span>Proof</span>User creation, permission, and credential setup path</li>
+                  <li><span>Use</span>Database privilege change detection context</li>
+                </ul>
+                <a class="evidence-link" href="assets/evidence/atlas-database-users-sanitized.png" target="_blank" rel="noopener">Open full sanitized screenshot</a>
               </div>
             </article>
           </div>
